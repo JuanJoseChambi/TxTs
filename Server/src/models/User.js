@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
         },
         name: {
             type: DataTypes.STRING,
-            allowNull: true
+            allowNull: false
         },
         lastname: {
             type: DataTypes.STRING,
@@ -27,13 +27,13 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        admin:{
-            type: DataTypes.BOOLEAN, 
-            allowNull: false,
-            defaultValue: false
+        bio: {
+            type: DataTypes.TEXT,
+            allowNull:true
+        },
+        image: {
+            type: DataTypes.TEXT,
+            allowNull:true
         }
-       
-
-
     }, {freezeTableName: true })
 };
