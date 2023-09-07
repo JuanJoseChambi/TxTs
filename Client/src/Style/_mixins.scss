@@ -1,0 +1,10 @@
+@mixin centrar-elemento ($just,$align,$dir:row){
+    display: flex;
+    justify-content: $just;
+    align-items: $align;
+    flex-direction: $dir;
+  }
+@mixin area ($wid,$hei) {
+    width: $wid;
+    height: $hei;
+}

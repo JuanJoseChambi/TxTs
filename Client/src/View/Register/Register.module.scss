@@ -1,6 +1,21 @@
+@import '../../Style/mixins';
+@import '../../Style/variables';
 .viewRegister{
-    display: flex;
-    width: 100%;
-    min-height: 100vh;
+    @include centrar-elemento(center, center, column);
+    @include area (100%, 100vh);
+    font-size: $textBig;
     background-color: rgb(151, 88, 88);
+}
+.container{
+    background-color: red;
+    @include centrar-elemento (center, center);
+    width: 100px;
+    height: 200px;
+    .btn{
+        background-color: green;
+        font-size: 20px;
+        p{
+            background-color: blue;
+        }
+    }
 }

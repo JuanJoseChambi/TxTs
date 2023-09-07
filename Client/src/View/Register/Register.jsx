@@ -3,7 +3,15 @@ import style from "./Register.module.scss"
 
 function Register() {
   return (
-    <div className={style.viewRegister}>Register</div>
+    <div className={style.viewRegister}>
+      <div>registro</div>
+      <div>Usuarios</div>
+      <div className={style.container}>
+        <button className={style.btn}>
+          <p>Hola</p>
+        </button>
+      </div>
+    </div>
   )
 }
 
