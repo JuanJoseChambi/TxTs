@@ -1,24 +1,45 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import style from "./SignIn.module.scss"
 
-function SignIn() {
+function SignIn({createCount}) {
+
+useEffect(() => {
+    const SignIn = document.getElementById("SignIn");
+    function callback (entrys) {
+        entrys.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add(style.visibleSignIn)
+            }
+        })
+    }
+    const options = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 1
+    }
+    const observadorSignIn = new IntersectionObserver(callback, options);
+
+    observadorSignIn.observe(SignIn)
+    
+},[])
+
   return (
-    <div className={style.containerSignIn}>
+    <div className={style.containerSignIn} id='SignIn'>
         <div className={style.header}>
             <p >Iniciar Sesion</p>
             <p >Bienvenido de nuevo a <b>TxTs</b></p>
         </div>
-        <div className={style.containerInputs}>
-            <input type="text" placeholder='Email'/>
-            <input type="text" placeholder='Contraseña'/>
+        <form className={style.containerInputs}>
+            <input name={"Input"} type="text" placeholder='Email'/>
+            <input name={"Input"} type="text" placeholder='Contraseña'/>
             <button className={style.btnAccess}>Acceder</button>
-        </div>
+        </form>
         <p className={style.separador}>O</p>
         <div className={style.tercerosSignIn}>
             <button><i className='bx bxl-gmail'></i>Iniciar Sesion con Gmail</button>
             <button><i className='bx bxl-github'></i>Iniciar Secion Con GitHub</button>
         </div>
-        <p className={style.textRegister}>No tenes una cuenta? <button>Crea una Cuenta</button></p>
+        <p className={style.textRegister}>No tenes una cuenta? <button onClick={() => createCount()}>Crea una Cuenta</button></p>
     </div>
   )
 }
