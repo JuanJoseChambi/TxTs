@@ -41,7 +41,17 @@
     font-size: 2em;
     margin: 0.67em 0;
   }
-  
+  p{
+    margin: 0;
+  }
+  input{
+    border: 0;
+    outline: none;
+  }
+  button{
+    outline: none;
+    border: 0;
+  }
   /* Grouping content
      ========================================================================== */
   

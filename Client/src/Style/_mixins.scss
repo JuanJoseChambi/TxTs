@@ -4,7 +4,7 @@
     align-items: $align;
     flex-direction: $dir;
   }
-@mixin area ($wid,$hei) {
+@mixin area ($wid:100%,$hei:100vh) {
     width: $wid;
     height: $hei;
 }

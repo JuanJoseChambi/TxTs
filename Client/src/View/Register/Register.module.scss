@@ -1,10 +1,18 @@
 @import '../../Style/mixins';
 @import '../../Style/variables';
 .viewRegister{
-    @include centrar-elemento(center, center, column);
+    background: rgb(255,255,255);
+background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(206,200,200,1) 61%);
     @include area (100%, 100vh);
-    font-size: $textBig;
-    background-color: rgb(151, 88, 88);
+    @include centrar-elemento (space-around, center);
+    background-color: $bgPrincipal;
+}
+.containerLogo{
+    width: 430px;
+    // background-color: red;
+    img{
+        width: 100%;
+    }
 }
 .container{
     background-color: red;
