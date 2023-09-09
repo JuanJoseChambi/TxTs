@@ -1,11 +1,9 @@
 @import '../../Style/mixins';
 @import '../../Style/variables';
-.viewRegister{
-    background: rgb(255,255,255);
-background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(206,200,200,1) 61%);
+.viewRegister{ 
+    background-color: #efe7e7;
     @include area (100%, 100vh);
     @include centrar-elemento (space-between, center);
-    background-color: $bgPrincipal;
 }
 .containerLogo{
     width: 350px;

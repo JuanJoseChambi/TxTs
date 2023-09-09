@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import style from "./SignIn.module.scss"
+import Button from '../Button/Button';
 
 function SignIn({createCount}) {
 
@@ -32,7 +33,7 @@ useEffect(() => {
         <form className={style.containerInputs}>
             <input name={"Input"} type="text" placeholder='Email'/>
             <input name={"Input"} type="text" placeholder='Contraseña'/>
-            <button className={style.btnAccess}>Acceder</button>
+            <Button text="Acceder"/>
         </form>
         <p className={style.separador}>O</p>
         <div className={style.tercerosSignIn}>

@@ -10,7 +10,7 @@
     background-color: rgb(255, 255, 255);
     margin-right: 40px;
     padding: 0;
-    box-shadow: 10px 10px 10px 0 rgb(95, 95, 95);
+    box-shadow: 0px 10px 50px 0px rgb(95, 95, 95);
     opacity: 0;
     transition: opacity 1s ease-in-out;
     .header{
@@ -45,17 +45,6 @@
             font-size: 14px;
             border: 1px solid #A9A2A2;
         }
-        // ------------------ Button -------------------------------
-        .btnAccess{
-            padding: 7px 20px;
-            border-radius: 20px;
-            color: white;
-            background-color: $Violeta;
-            font-weight: $light;
-            border: 1px solid #A9A2A2;
-            cursor: pointer;
-        }
-        // --------------------------------------------------------
     }
     .separador{
         width: 100%;

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import style from "./CheckIn.module.scss"
+import Button from '../Button/Button';
 
 export default function CheckIn ({signIn}) {
 
@@ -36,7 +37,7 @@ export default function CheckIn ({signIn}) {
                 <input name={"input"} type="text" placeholder='Contraseña'/>
                 <input name={"input"} type="text" placeholder='Verificar Contraseña'/>
                 <input name={"input"} type="text" placeholder='Edad'/>
-                <button className={style.btnAccess}>Crear Cuenta</button>
+                <Button text="Crear Cuenta"/>
             </form>
             <p className={style.textRegister}>No tenes una cuenta? <button onClick={() => signIn()}>Crea una Cuenta</button></p>
         </div>
