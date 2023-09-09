@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import style from "./SignIn.module.scss"
 import Button from '../Button/Button';
+import Inputs from '../Inputs/Inputs';
 
 function SignIn({createCount}) {
 
@@ -31,8 +32,7 @@ useEffect(() => {
             <p >Bienvenido de nuevo a <b>TxTs</b></p>
         </div>
         <form className={style.containerInputs}>
-            <input name={"Input"} type="text" placeholder='Email'/>
-            <input name={"Input"} type="text" placeholder='Contraseña'/>
+            <Inputs nameInputs={ [ {txt:"Email", typ:"text"}, {txt:"Contraseña",typ:"text"} ]}/>
             <Button text="Acceder"/>
         </form>
         <p className={style.separador}>O</p>

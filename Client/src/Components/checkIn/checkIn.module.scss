@@ -36,15 +36,6 @@
         @include area(100%, 370px);
         @include centrar-elemento(space-around, center, column);
         margin-top: 30px;
-        // ----------------- inputs -------------------------
-        input{
-            width: 310px;
-            height: 30px;
-            border-radius: 15px;
-            padding: 0 12px;
-            font-size: 14px;
-            border: 1px solid #A9A2A2;
-        }
     }
     .textRegister{
         font-weight: $light;
