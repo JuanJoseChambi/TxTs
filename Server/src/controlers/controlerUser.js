@@ -2,6 +2,7 @@ const {Router} = require("express")
 const { User } = require("../db")
 const router = Router();
 const bcrypt = require("bcryptjs")
+const { SECRET_KEY } = process.env
 
 router.post("/signin", async (req, res) => {
     const {email, contraseña} = req.body;
