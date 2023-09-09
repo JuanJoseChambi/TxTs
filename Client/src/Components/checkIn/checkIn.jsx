@@ -11,8 +11,7 @@ export default function CheckIn({ signIn }) {
       entrys.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add(style.visibleCheckIn);
-        }
-      });
+        }});
     }
     const options = {
       root: null,
@@ -20,7 +19,6 @@ export default function CheckIn({ signIn }) {
       threshold: 0.5,
     };
     const observadorCheckIn = new IntersectionObserver(callback, options);
-
     observadorCheckIn.observe(CheckIn);
   }, []);
 
@@ -34,16 +32,17 @@ export default function CheckIn({ signIn }) {
       </div>
       <form className={style.containerInputs}>
         <Inputs nameInputs={[
-            { txt: "Nombre de Usuario", typ: "text" },
-            { txt: "Email", typ: "email" },
-            { txt: "Contraseña", typ: "password" },
-            { txt: "Verificar Contraseña", typ: "password" },
-            { txt: "Edad", typ: "number" },
+            { txt: "Nombre", typ: "text", name: "nombre"},
+            { txt: "Apellido", typ: "text",name:"apellido"},
+            { txt: "Nombre de Usuario", typ: "text",name:"nombreUsuario"},
+            { txt: "Email", typ: "email",name:"email"},
+            { txt: "Contraseña", typ: "password",name:"contraseña"},
+            { txt: "Verificar Contraseña", typ: "password", name:"verificarContraseña"}
           ]}/>
         <Button text="Crear Cuenta" />
       </form>
       <p className={style.textRegister}>
-        No tenes una cuenta?{" "}
+        No tenes una cuenta?
         <button onClick={() => signIn()}>Crea una Cuenta</button>
       </p>
     </div>
