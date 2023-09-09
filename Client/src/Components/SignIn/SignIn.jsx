@@ -32,7 +32,7 @@ useEffect(() => {
             <p >Bienvenido de nuevo a <b>TxTs</b></p>
         </div>
         <form className={style.containerInputs}>
-            <Inputs nameInputs={ [ {txt:"Email", typ:"text"}, {txt:"Contraseña",typ:"text"} ]}/>
+            <Inputs nameInputs={ [ {txt:"Email", typ:"email"}, {txt:"Contraseña",typ:"password"} ]}/>
             <Button text="Acceder"/>
         </form>
         <p className={style.separador}>O</p>
