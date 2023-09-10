@@ -3,22 +3,22 @@ const { User } = require("../db")
 const router = Router();
 const bcrypt = require("bcryptjs");
 const { compararContraseña, generarToken } = require("../auth/auth");
-const { SECRET_KEY } = process.env
+const { routeProtector } = require("../middlewares/routeProtector");
 
 router.post("/login", async (req, res) => {
     const {email, contraseña} = req.body;
+    if(!email) return res.status(404).json({message:"Email Faltante"});
+    if(!contraseña) return res.status(404).json({message:"Contraseña Faltante"});
+    
     try {
-        if(!email) return res.status(404).json({message:"Email Faltante"});
-        if(!contraseña) return res.status(404).json({message:"Contraseña Faltante"});
-
         const emailMinus = email.toLowerCase()
         const user = await User.findOne({where:{email:emailMinus}})
         if (user) {
            if(compararContraseña(contraseña, user.contraseña)) {
              const token = generarToken(user)
-             return res.status(200).json(token)
+            return res.status(200).json(token)
            }else{
-            res.status(404).json({message:"Contraseña Incorrecta"})
+            return res.status(404).json({message:"Contraseña Incorrecta"})
            }
         }else{
            return res.status(404).json("Usuario No encontrado")
@@ -55,7 +55,7 @@ router.post("/createCount", async (req, res) => {
         res.status(500).json({error:error.message})
     }
 })
-router.get("/", async (req, res) => {
+router.get("/", routeProtector, async (req, res) => {
     const allUsers = await User.findAll();
     res.status(200).json(allUsers)
 })

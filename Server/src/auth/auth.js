@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const { SECRET_KEY } = process.env// Configura una clave secreta para JWT
+const { SECRET_KEY } = process.env
 
    function generarToken(usuario) {
      return jwt.sign({ usuario }, SECRET_KEY, { expiresIn: '1d' });
