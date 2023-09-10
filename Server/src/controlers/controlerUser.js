@@ -1,10 +1,11 @@
 const {Router} = require("express")
 const { User } = require("../db")
 const router = Router();
-const bcrypt = require("bcryptjs")
+const bcrypt = require("bcryptjs");
+const { compararContraseña, generarToken } = require("../auth/auth");
 const { SECRET_KEY } = process.env
 
-router.post("/signin", async (req, res) => {
+router.post("/login", async (req, res) => {
     const {email, contraseña} = req.body;
     try {
         if(!email) return res.status(404).json({message:"Email Faltante"});
@@ -13,10 +14,12 @@ router.post("/signin", async (req, res) => {
         const emailMinus = email.toLowerCase()
         const user = await User.findOne({where:{email:emailMinus}})
         if (user) {
-           const value = await bcrypt.compare(contraseña, user.contraseña)
-           const result = value ? {message:"Aprobado"}: {message:"No Aprobado"}
-        //    return res.status(200).json(user)
-           return res.status(200).json(result)
+           if(compararContraseña(contraseña, user.contraseña)) {
+             const token = generarToken(user)
+             return res.status(200).json(token)
+           }else{
+            res.status(404).json({message:"Contraseña Incorrecta"})
+           }
         }else{
            return res.status(404).json("Usuario No encontrado")
         }
@@ -25,14 +28,15 @@ router.post("/signin", async (req, res) => {
     }
 ;})
 
-router.post("/checkin", async (req, res) => {
+router.post("/createCount", async (req, res) => {
     try {
         const {nombre, apellido, nombreUsuario, email, contraseña} = req.body;
         if (nombre && apellido && nombreUsuario && email && contraseña) {
             const emailMinus = email.toLowerCase();
             const userExist = await User.findOne({where:{email: emailMinus}})
             const userName = await User.findOne({where:{nombreUsuario: nombreUsuario}})
-            if (userExist || userName) throw new Error("El Usuario Existe");
+            if (userExist) throw new Error("El email en uso");
+            if (userName) throw new Error("El nombre de usuario ya existe");
             const contraseñaHashed = await bcrypt.hash(contraseña, 10);
             const userCreate = {
                 nombre:nombre,
