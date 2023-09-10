@@ -1,11 +1,9 @@
-const {Router} = require("express")
 const { User } = require("../db")
-const router = Router();
 const bcrypt = require("bcryptjs");
 const { compararContraseña, generarToken } = require("../auth/auth");
-const { routeProtector } = require("../middlewares/routeProtector");
+const {routeProtector} = require("../middlewares/routeProtector")
 
-router.post("/login", async (req, res) => {
+const accessUser = async (req, res) => {
     const {email, contraseña} = req.body;
     if(!email) return res.status(404).json({message:"Email Faltante"});
     if(!contraseña) return res.status(404).json({message:"Contraseña Faltante"});
@@ -26,9 +24,9 @@ router.post("/login", async (req, res) => {
     } catch (error) {
         res.status(500).json({error:error.message})
     }
-;})
+;}
 
-router.post("/createCount", async (req, res) => {
+const createUser = async (req, res) => {
     try {
         const {nombre, apellido, nombreUsuario, email, contraseña} = req.body;
         if (nombre && apellido && nombreUsuario && email && contraseña) {
@@ -54,13 +52,17 @@ router.post("/createCount", async (req, res) => {
     } catch (error) {
         res.status(500).json({error:error.message})
     }
-})
-router.get("/", routeProtector, async (req, res) => {
+}
+const allUser =  async (req, res) => {
     const allUsers = await User.findAll();
     res.status(200).json(allUsers)
-})
+}
 
-module.exports = router
+module.exports = {
+  accessUser,
+  createUser,
+  allUser:[routeProtector, allUser]
+}
 
 
 /*Para crear middlewares que generen tokens JWT (JSON Web Tokens) para autenticar a los usuarios y luego devolver esos tokens como parte de la respuesta de inicio de sesión, debes seguir una serie de pasos. A continuación, te mostraré cómo hacerlo en una aplicación Node.js con Express y la biblioteca `jsonwebtoken`:
