@@ -3,10 +3,13 @@ import style from "./SignIn.module.scss"
 import Inputs from '../Inputs/Inputs';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import { sweetalertSuccess } from '../Alerts/sweetalert';
+import { useDispatch } from 'react-redux';
+import { setAuth } from '../../Redux/Slice/auth';
 
 function SignIn({createCount}) {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const [login, setLogin] = useState({
         email:"",
         contraseña: ""
@@ -20,18 +23,11 @@ function SignIn({createCount}) {
             contraseña: login.contraseña
           }
           const {data} = await axios.post("/api/user/login",userAccess)
-          localStorage.setItem("token", data)
+          dispatch(setAuth(data))
           navigate("/home")
-          Swal.fire({
-            title: "Aprobado" ,
-            icon: "success",
-            background: "aliceblue",
-            toast: 'true',
-            position:'top',     
-            confirmButtonText:'OK',
-            padding: '1,4rem',
-            confirmButtonColor:'#76bc6f',
-          });
+          // localStorage.setItem("token", data)
+          // window.location.reload()
+          // sweetalertSuccess()
         }
       }
 

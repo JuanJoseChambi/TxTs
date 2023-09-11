@@ -5,16 +5,13 @@ import Home from "./View/Home/Home"
 import Profile from "./View/Profile/Profile"
 import Dashboard from "./View/Dashboard/Dashboard"
 import Estadisticts from "./View/Estadisticts/Estadisticts"
-import { useEffect, useState } from "react"
 import axios from "axios"
 axios.defaults.baseURL="http://localhost:3001";
-
+import { useSelector } from "react-redux"
 
 function App() {
-  const [user, setUser] = useState("")
-
-  const userAuth = localStorage.getItem("token");
-
+  const { auth } = useSelector(state => state.auth);
+  
   return (
     <div>
       <Routes>
@@ -22,18 +19,18 @@ function App() {
         <Route path="/register" element={<Register/>}/>
 
         {/*El protRou se utiliza para comprobar múltiples componentes(aveces); contiene un outlet que, si es verdadero (true), ejecuta dos rutas dentro del Route.*/}
-        <Route element={<ProtectedRoouter isAllowed={!!userAuth} redirectTo={"/register"}/>}>{/*El operador !! es si es false da false y si es true da true*/} 
+        <Route element={<ProtectedRoouter isAllowed={auth} redirectTo={"/register"}/>}>{/*El operador !! es si es false da false y si es true da true*/} 
           <Route path="/home" element={<Home/>}/>
           <Route path="/home/profile" element={<Profile/>}/>
         </Route>  
 
         <Route path="/home/dashboard" element={
-        <ProtectedRoouter isAllowed={!!userAuth && user.role ==="admin"} redirectTo={"/home"}> 
+        <ProtectedRoouter isAllowed={!!auth && auth.role ==="admin"} redirectTo={"/home"}> 
             <Dashboard/>
         </ProtectedRoouter>}/>
 
         <Route path="/home/estadistics" element={
-          <ProtectedRoouter isAllowed={!!userAuth && user.role === "analize"} redirectTo={"/home"}>
+          <ProtectedRoouter isAllowed={!!auth && auth.role === "analize"} redirectTo={"/home"}>
             <Estadisticts/>
           </ProtectedRoouter>
         }/>

@@ -11,7 +11,9 @@ function Register() {
       <div className={style.containerLogo}>
         <img src={LogoBackground} alt="User" />
       </div>
-      {change?<SignIn createCount={() => setChange(false)}/>:<CheckIn signIn={() => setChange(true)}/>}
+      {change
+      ?<SignIn createCount={() => setChange(false)}/>
+      :<CheckIn signIn={() => setChange(true)}/>}
     </div>
   )
 }
