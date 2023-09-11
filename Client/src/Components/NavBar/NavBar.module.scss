@@ -1,0 +1,7 @@
+@import "../../Style/mixins";
+.viewNav{
+    @include area(103.6%, 8vh);
+    background-color:#292929;
+    position: sticky;
+    top: 0;
+}

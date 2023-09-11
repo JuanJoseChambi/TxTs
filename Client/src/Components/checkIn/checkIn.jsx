@@ -1,9 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./CheckIn.module.scss";
-import Button from "../Button/Button";
 import Inputs from "../Inputs/Inputs";
+import axios from "axios";
 
 export default function CheckIn({ signIn }) {
+  const [createAccount, setCreateAccount] = useState({
+    nombre: "",
+    apellido: "",
+    nombreUsuario: "",
+    email: "",
+    contraseña: "",
+    verificarContraseña: ""
+  })
+
+  async function handlerCreateUser (e) {
+    e.preventDefault();
+    if (createAccount.nombre && createAccount.apellido && createAccount.nombreUsuario && createAccount.email && createAccount.contraseña && createAccount.verificarContraseña) {
+      const {data} = await axios.post("/api/user/createAccount", createAccount);
+      console.log(data);
+      signIn()
+    }
+  }
   useEffect(() => {
     const CheckIn = document.getElementById("CheckIn");
 
@@ -38,13 +55,9 @@ export default function CheckIn({ signIn }) {
             { txt: "Email", typ: "email",name:"email"},
             { txt: "Contraseña", typ: "password",name:"contraseña"},
             { txt: "Verificar Contraseña", typ: "password", name:"verificarContraseña"}
-          ]}/>
-        <Button text="Crear Cuenta" />
+          ]} textBtn={"Crear Cuenta"} state={{set: setCreateAccount, stte:createAccount}} actionPress={handlerCreateUser}/>
       </form>
-      <p className={style.textRegister}>
-        No tenes una cuenta?
-        <button onClick={() => signIn()}>Crea una Cuenta</button>
-      </p>
+      <p className={style.textRegister}>Ya tenes una cuenta?<button onClick={() => signIn()}>Inicia Sesion</button></p>
     </div>
   );
 }

@@ -6,5 +6,5 @@
   }
 @mixin area ($wid:100%,$hei:100vh) {
     width: $wid;
-    height: $hei;
+    min-height: $hei;
 }

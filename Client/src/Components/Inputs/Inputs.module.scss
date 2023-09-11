@@ -1,3 +1,4 @@
+@import "../../Style/variables";
 .inputsComponent,.inputsComponentPassword{
     width: 310px;
     height: 30px;
@@ -15,4 +16,13 @@
         right: 10px;
         font-size: 20px;
     }
+}
+.btn{
+    padding: 7px 20px;
+    border-radius: 20px;
+    color: white;
+    background-color: $Violeta;
+    font-weight: $light;
+    border: 1px solid #A9A2A2;
+    cursor: pointer;
 }
