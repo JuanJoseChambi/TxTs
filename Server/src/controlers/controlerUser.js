@@ -45,9 +45,9 @@ const createUser = async (req, res) => {
             }
             const userCreated = await User.create(userCreate)
             // res.status(200).json(userCreated)
-            res.status(200).json({message: "Usuario creado"})
+            res.status(200).json({message: "Usuario Creado"})
         }else{
-            res.status(404).json({message:"Flata de Credenciales"})
+            res.status(200).json({message:"Datos a Completar Faltantes"})
         }
     } catch (error) {
         res.status(500).json({error:error.message})

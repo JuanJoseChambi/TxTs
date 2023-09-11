@@ -5,6 +5,6 @@ const routerUser = Router()
 
 routerUser.get("/", allUser)
 routerUser.post("/login", accessUser)
-routerUser.post("/createCount", createUser)
+routerUser.post("/createAccount", createUser)
 
 module.exports = routerUser
