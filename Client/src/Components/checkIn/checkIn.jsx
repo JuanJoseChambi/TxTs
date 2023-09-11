@@ -17,7 +17,6 @@ export default function CheckIn({ signIn }) {
     e.preventDefault();
     if (createAccount.nombre && createAccount.apellido && createAccount.nombreUsuario && createAccount.email && createAccount.contraseña && createAccount.verificarContraseña) {
       const {data} = await axios.post("/api/user/createAccount", createAccount);
-      console.log(data);
       signIn()
     }
   }

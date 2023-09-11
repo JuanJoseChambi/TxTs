@@ -3,7 +3,7 @@ import style from "./SignIn.module.scss"
 import Inputs from '../Inputs/Inputs';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { sweetalertSuccess } from '../Alerts/sweetalert';
+import { sweetalertSuccess, sweetalertError } from '../Alerts/sweetalert';
 import { useDispatch } from 'react-redux';
 import { setAuth } from '../../Redux/Slice/auth';
 
@@ -23,11 +23,13 @@ function SignIn({createCount}) {
             contraseña: login.contraseña
           }
           const {data} = await axios.post("/api/user/login",userAccess)
-          dispatch(setAuth(data))
-          navigate("/home")
-          // localStorage.setItem("token", data)
-          // window.location.reload()
-          // sweetalertSuccess()
+          if (data.access) {
+            dispatch(setAuth(data.token))
+            navigate("/home")
+            sweetalertSuccess()
+          }else{
+            sweetalertError(data.message)
+          }
         }
       }
 
