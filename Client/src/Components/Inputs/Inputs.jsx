@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import style from "./Inputs.module.scss"
-import axios from "axios"
 
 function Inputs({nameInputs, textBtn, state, actionPress}) {
     const [hide, setHide] = useState("password")

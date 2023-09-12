@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import style from "./CheckIn.module.scss";
 import Inputs from "../Inputs/Inputs";
 import axios from "axios";
+import { alertSuccess } from '../Alerts/Alerts';
+
 
 export default function CheckIn({ signIn }) {
   const [createAccount, setCreateAccount] = useState({
@@ -17,6 +19,7 @@ export default function CheckIn({ signIn }) {
     e.preventDefault();
     if (createAccount.nombre && createAccount.apellido && createAccount.nombreUsuario && createAccount.email && createAccount.contraseña && createAccount.verificarContraseña) {
       const {data} = await axios.post("/api/user/createAccount", createAccount);
+      alertSuccess("Usuario Creado")
       signIn()
     }
   }

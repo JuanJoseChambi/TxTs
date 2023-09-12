@@ -1,7 +1,6 @@
 @import '../../Style/mixins';
 @import '../../Style/variables';
 .viewRegister{ 
-    background-color: #efe7e7;
     @include area (100%, 100vh);
     @include centrar-elemento (space-between, center);
 }
