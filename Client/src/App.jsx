@@ -8,10 +8,10 @@ import Estadisticts from "./View/Estadisticts/Estadisticts"
 import axios from "axios"
 axios.defaults.baseURL="http://localhost:3001";
 import { useSelector } from "react-redux"
-
+import { Toaster } from "sonner"
 function App() {
   const { auth } = useSelector(state => state.auth);
-  
+
   return (
     <div>
       <Routes>
@@ -38,6 +38,9 @@ function App() {
         <Route path='*' element={null}/>
 
       </Routes>
+      <Toaster/>
+      <div>
+    </div>
     </div>
   )
 }

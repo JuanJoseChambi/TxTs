@@ -3,9 +3,10 @@ import style from "./SignIn.module.scss"
 import Inputs from '../Inputs/Inputs';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { sweetalertSuccess, sweetalertError } from '../Alerts/sweetalert';
+import { alertSuccess, alertError } from '../Alerts/Alerts';
 import { useDispatch } from 'react-redux';
 import { setAuth } from '../../Redux/Slice/auth';
+
 
 function SignIn({createCount}) {
     const navigate = useNavigate()
@@ -26,10 +27,12 @@ function SignIn({createCount}) {
           if (data.access) {
             dispatch(setAuth(data.token))
             navigate("/home")
-            sweetalertSuccess()
+            alertSuccess("Bienvenido a TxTs")
           }else{
-            sweetalertError(data.message)
+            alertError(data.message)
           }
+        }else{
+          alertError('Ingrese Contraseña y Email')
         }
       }
 
