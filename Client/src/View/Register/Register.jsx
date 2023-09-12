@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import style from "./Register.module.scss"
 import LogoBackground from "../../assets/LogoBackground.svg"
 import SignIn from '../../Components/SignIn/SignIn'
-import CheckIn from '../../Components/CheckIn/CheckIn'
+import CreateAcount from '../../Components/CreateAcount/CreateAcount'
 
 function Register() {
   const [change, setChange] = useState(true)
@@ -13,7 +13,7 @@ function Register() {
       </div>
       {change
       ?<SignIn createCount={() => setChange(false)}/>
-      :<CheckIn signIn={() => setChange(true)}/>}
+      :<CreateAcount signIn={() => setChange(true)}/>}
     </div>
   )
 }

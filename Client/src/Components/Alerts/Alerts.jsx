@@ -6,8 +6,24 @@ function alertSuccess (success) {
 function alertError(error) {
     toast.error(`${error}`)
   }
+function alertLoading (data) {
+  const promise = () => new Promise((resolve) => setTimeout(resolve, 2000));
+
+  toast.promise(promise, {
+  loading: 'Loading...',
+  success: () => {
+   if (data.includes("Error")) {
+    alertError(data)
+   }else{
+    return `${data}`;
+   }
+  },
+  error: `${data}`,
+  });   
+}
 
 export {
   alertSuccess,
-  alertError
+  alertError,
+  alertLoading
 }
