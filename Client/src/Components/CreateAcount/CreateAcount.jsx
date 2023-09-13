@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import style from "./CreateAcount.module.scss";
 import Inputs from "../Inputs/Inputs";
 import axios from "axios";
-import { alertSuccess, alertLoading, alertError } from '../Alerts/Alerts';
+import { alertError, alertLoading } from '../Alerts/Alerts';
 
 
 export default function CreateAcount({ signIn }) {
@@ -18,14 +18,19 @@ export default function CreateAcount({ signIn }) {
   async function handlerCreateUser (e) {
     e.preventDefault();
     if (createAccount.nombre && createAccount.apellido && createAccount.nombreUsuario && createAccount.email && createAccount.contraseña && createAccount.verificarContraseña) {
-      const {data} = await axios.post("/api/user/createAccount", createAccount);
-      console.log(data);
+      if (createAccount.contraseña === createAccount.verificarContraseña) {
+        const {data} = await axios.post("/api/user/createAccount", createAccount);
       if (data.create) {
         alertLoading(data.message)
         signIn()
       }else{
         alertLoading(data.message)
       }
+      }else{
+        alertError("Desigualdad de Contraseñas")
+      }
+    }else{
+      alertError("Complete todos Los campos para el Registro")
     }
   }
 

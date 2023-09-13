@@ -17,8 +17,7 @@ function alertLoading (data) {
    }else{
     return `${data}`;
    }
-  },
-  error: `${data}`,
+  }
   });   
 }
 

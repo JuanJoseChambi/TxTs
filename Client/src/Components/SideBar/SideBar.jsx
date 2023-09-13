@@ -7,7 +7,7 @@ function SideBar() {
   }
   return (
     <div className={style.sideBar}>
-      <button className={style.icon} onClick={handlerExit}><i class='bx bx-log-in' ></i></button>
+      <button className={style.icon} onClick={handlerExit}><i className='bx bx-log-in' ></i></button>
     </div>
   )
 }
