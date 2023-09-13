@@ -5,24 +5,24 @@ const {routeProtector} = require("../middlewares/routeProtector")
 
 const accessUser = async (req, res) => {
     const {email, contraseña} = req.body;
-    if(!email) return res.status(404).json({message:"Email Faltante"});
-    if(!contraseña) return res.status(404).json({message:"Contraseña Faltante"});
-    
     try {
-        const emailMinus = email.toLowerCase()
-        const user = await User.findOne({where:{email:emailMinus}})
-        if (user) {
-           if(compararContraseña(contraseña, user.contraseña)) {
-             const token = generarToken(user)
-            return res.status(200).json(token)
-           }else{
-            return res.status(404).json({message:"Contraseña Incorrecta"})
-           }
-        }else{
-           return res.status(404).json("Usuario No encontrado")
-        }
+      if(!contraseña && !email) return res.status(404).json({message:"Ingrese Email y Contraseña"});
+
+      const emailMinus = email.toLowerCase()
+      const user = await User.findOne({where:{email:emailMinus}})
+      if (user) {
+         if(compararContraseña(contraseña, user.contraseña)) {
+           const token = generarToken(user)
+          return res.status(200).json({token:token, access:true})
+         }else{
+          return res.status(201).json({access:false, message:"Contraseña Incorrecta"})
+         }
+      }else{
+         return res.status(201).json({access:false, message:"Email Incorrecto"})
+      }
     } catch (error) {
-        res.status(500).json({error:error.message})
+      console.error("Error en el controlador accessUser:", error);
+      res.status(500).json({ error: error.message });
     }
 ;}
 
@@ -33,8 +33,8 @@ const createUser = async (req, res) => {
             const emailMinus = email.toLowerCase();
             const userExist = await User.findOne({where:{email: emailMinus}})
             const userName = await User.findOne({where:{nombreUsuario: nombreUsuario}})
-            if (userExist) throw new Error("El email en uso");
-            if (userName) throw new Error("El nombre de usuario ya existe");
+            if (userExist) { return res.status(200).json({message:"Error: Email en uso"}) };
+            if (userName) { return res.status(200).json({message:"Error: Nombre de Usuario en uso"}) };
             const contraseñaHashed = await bcrypt.hash(contraseña, 10);
             const userCreate = {
                 nombre:nombre,
@@ -43,11 +43,10 @@ const createUser = async (req, res) => {
                 email:emailMinus,
                 contraseña: contraseñaHashed
             }
-            const userCreated = await User.create(userCreate)
-            // res.status(200).json(userCreated)
-            res.status(200).json({message: "Usuario Creado"})
+            await User.create(userCreate)
+            return res.status(200).json({create:true, message: "Usuario Registrado"})
         }else{
-            res.status(200).json({message:"Datos a Completar Faltantes"})
+            res.status(404).json({message:"Datos a Completar Faltantes"})
         }
     } catch (error) {
         res.status(500).json({error:error.message})
