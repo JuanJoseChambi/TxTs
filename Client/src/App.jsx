@@ -16,8 +16,10 @@ function App() {
 
   return (
     <div>
+      
       <NavBar/>
       <SideBar/>
+
       <Routes>
         <Route index element={<Register/>}/>
         <Route path="/register" element={<Register/>}/>
