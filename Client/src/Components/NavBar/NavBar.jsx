@@ -1,5 +1,6 @@
 import React from "react";
 import style from "./NavBar.module.scss";
+import TxTsNavBarLogo from "../../assets/TxTsNavBarLogo.png"
 
 function NavBar() {
   return (
@@ -20,8 +21,8 @@ function NavBar() {
         <input className={style.input} name="search" type="text" placeholder="Buscar"/>
       </div>
 
-      <div>
-        Hola
+      <div className={style.containerLogoTxTs}>
+          <img className={style.image} src={TxTsNavBarLogo} alt="" />
       </div>
     </div>
   )

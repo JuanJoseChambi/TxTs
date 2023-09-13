@@ -16,8 +16,8 @@
   padding: 0 0px;
   .containerImage{
     @include centrar-elemento(center,center);
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     background-color: red;
     border-radius: 50px;
     overflow: hidden;
@@ -31,7 +31,7 @@
 }
 
 .inputContainer {
-  @include area(20rem, 5vh);
+  @include area(25%, 5vh);
   @include centrar-elemento(space-between, center, row);
   background-color: #EEEEEE;
   border-radius: 20px;
@@ -48,5 +48,16 @@
     padding: 0 5px;
     // font-weight: $extraLight;
     font-size: 12px;
+  }
+}
+
+.containerLogoTxTs{
+  width: 3.3%;
+  margin-right: 20px;
+  position: relative;
+  .image{
+    // position: absolute;
+    // top: 0;
+    width: 100%;
   }
 }

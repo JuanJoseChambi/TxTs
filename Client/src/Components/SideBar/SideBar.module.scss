@@ -2,13 +2,12 @@
 @import "../../Style/variables";
 .sideBar{
     @include area (3.5%, 100%);
+    @include centrar-elemento(start, center, column);
     background-color:#292929;
     position: fixed;
     right: 0;
+    transition: width .5s;
 }
-.icon{
-    background-color: transparent;
-    color: $Violeta;
-    font-size: 25px;
-    cursor: pointer;
+.sideBar:hover{
+    width: 5%;
 }

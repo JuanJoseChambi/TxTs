@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import style from "./Register.module.scss"
-import LogoBackground from "../../assets/LogoBackground.svg"
+import TxTsRegister from "../../assets/TxTsRegister.png"
 import SignIn from '../../Components/SignIn/SignIn'
 import CreateAcount from '../../Components/CreateAcount/CreateAcount'
 
@@ -9,7 +9,7 @@ function Register() {
   return (
     <div className={style.viewRegister}>
       <div className={style.containerLogo}>
-        <img src={LogoBackground} alt="User" />
+        <img className={style.logo} src={TxTsRegister} alt="User" />
       </div>
       {change
       ?<SignIn createCount={() => setChange(false)}/>
