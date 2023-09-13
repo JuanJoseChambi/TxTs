@@ -9,11 +9,15 @@ import axios from "axios"
 axios.defaults.baseURL="http://localhost:3001";
 import { useSelector } from "react-redux"
 import { Toaster } from "sonner"
+import NavBar from "./Components/NavBar/NavBar"
+import SideBar from "./Components/SideBar/SideBar"
 function App() {
   const { auth } = useSelector(state => state.auth);
 
   return (
     <div>
+      <NavBar/>
+      <SideBar/>
       <Routes>
         <Route index element={<Register/>}/>
         <Route path="/register" element={<Register/>}/>

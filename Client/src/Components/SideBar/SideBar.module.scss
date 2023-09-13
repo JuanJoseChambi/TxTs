@@ -5,9 +5,18 @@
     @include centrar-elemento(start, center, column);
     background-color:#292929;
     position: fixed;
-    right: 0;
+    left: 0;
     transition: width .5s;
 }
 .sideBar:hover{
-    width: 5%;
+    width: 60px;
 }
+.containerLogoTxTs{
+    width: 45px;
+    margin-bottom: 20px;
+    .image{
+      // position: absolute;
+      // top: 0;
+      width: 100%;
+    }
+  }

@@ -4,15 +4,15 @@
     border: 1px solid rgba(95, 95, 95, 0.512);
 }
 .btn{
+    width: 35px;
     // background-color: blue;
     background-color: transparent;
     @include centrar-elemento(start, center);
     color: #CC00FF;
     font-size: 23px;
-    margin: 15px 0;
+    margin: 13px 0;
     i{
         // width: 35px;
         cursor: pointer;
     }
-    width: 35px;
 }

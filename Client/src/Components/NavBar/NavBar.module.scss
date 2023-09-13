@@ -1,11 +1,12 @@
 @import "../../Style/mixins";
 @import "../../Style/variables";
 .viewNav {
-  @include area(103.6%, 8vh);
-  @include centrar-elemento(space-between, center, row);
+  @include area(96.5%, 8vh);
+  @include centrar-elemento(start, center, row);
   background-color: #292929;
-  position: sticky;
+  position: fixed;
   top: 0;
+  right: 0;
 }
 .infoUser {
     @include centrar-elemento(space-between,center, row);
@@ -36,6 +37,7 @@
   background-color: #EEEEEE;
   border-radius: 20px;
   padding: 0 10px;
+  margin-left: 300px;
   .icon {
     @include centrar-elemento(center, center);
     font-size: 20px;
@@ -51,13 +53,3 @@
   }
 }
 
-.containerLogoTxTs{
-  width: 3.3%;
-  margin-right: 20px;
-  position: relative;
-  .image{
-    // position: absolute;
-    // top: 0;
-    width: 100%;
-  }
-}

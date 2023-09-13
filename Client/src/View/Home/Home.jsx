@@ -5,9 +5,7 @@ import SideBar from '../../Components/SideBar/SideBar'
 function Home() {
   return (
     <div className={style.viewHome}>
-      <NavBar/>
-      <SideBar/>
-      Hola
+      Hola como va toodo por casa brother
     </div>
   )
 }

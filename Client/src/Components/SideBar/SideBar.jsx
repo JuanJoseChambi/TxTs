@@ -1,6 +1,8 @@
 import React from "react";
 import style from "./SideBar.module.scss";
 import IconButtons from "../IconButtons/IconButtons";
+import TxTsNavBarLogo from "../../assets/TxTsNavBarLogo.png"
+
 function SideBar() {
   function handlerExit() {
     localStorage.removeItem("token");
@@ -8,17 +10,18 @@ function SideBar() {
   }
   return (
     <div className={style.sideBar}>
+      <div className={style.containerLogoTxTs}>
+          <img className={style.image} src={TxTsNavBarLogo} alt="TxTsLogo" />
+      </div>
       <IconButtons
         iconButton={[
-          { nameIcon: "bx bx-user", directTo: "/home/profile",name:"Perfil" },
-          { nameIcon: "bx bx-wallet-alt", directTo: "null", name:"Billetera" },
-          { nameIcon: "bx bx-bell", directTo: "null", name:"Notificaciones" },
-          { nameIcon: "bx bx-plus-circle", directTo: "null",name:"Crear" },
-          { nameIcon: "bx bx-chat", directTo: "null", name:"Mensajes" },
+          { nameIcon: "bx bx-user", directTo: "/home/profile" },
+          { nameIcon: "bx bx-wallet-alt", directTo: "null" },
+          { nameIcon: "bx bx-bell", directTo: "null" },
+          { nameIcon: "bx bx-plus-circle", directTo: "null" },
+          { nameIcon: "bx bx-chat", directTo: "null" },
         ]}/>
-       <IconButtons iconButton={[
-        { nameIcon: "bx bx-log-in", directTo: "null", action: handlerExit, name:"Salir"},
-       ]} separationTop={true}/>
+       <IconButtons iconButton={[ {nameIcon:"bx bx-help-circle", directTo:"null"}, { nameIcon: "bx bx-log-in", directTo: "null", action: handlerExit}]} separationTop={true}/>
     </div>
   );
 }
