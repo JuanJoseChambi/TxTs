@@ -13,6 +13,7 @@ function SideBar() {
       <IconButtons
         iconButton={[
           { nameIcon: "bx bx-user", directTo: "/home/profile" },
+          { nameIcon: 'bx bx-home-alt-2', directTo: "/home" },
           { nameIcon: "bx bx-wallet-alt", directTo: "null" },
           { nameIcon: "bx bx-bell", directTo: "null" },
           { nameIcon: "bx bx-plus-circle", directTo: "null" },

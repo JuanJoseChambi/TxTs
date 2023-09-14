@@ -8,3 +8,7 @@
     width: $wid;
     min-height: $hei;
 }
+@mixin view () {
+  padding-top: .5%;
+  padding-left: 4%;  
+}

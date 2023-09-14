@@ -1,8 +1,11 @@
 import React from 'react'
-
+import style from "./Profile.module.scss"
 function Profile() {
   return (
-    <div>Profile</div>
+    <div className={style.viewProfile}>
+      Profile <br />
+      hoa
+    </div>
   )
 }
 

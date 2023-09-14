@@ -1,7 +1,7 @@
 @import "../../Style/mixins";
 
 .viewHome{
-    @include area(100%, 92vh);  
-    padding-left: 4%;  
-    background-color: red;
+   @include area(100%, 90.9vh);  
+   @include view;
+   background-color: red;
 }
