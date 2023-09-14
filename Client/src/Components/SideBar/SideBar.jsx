@@ -1,7 +1,6 @@
 import React from "react";
 import style from "./SideBar.module.scss";
 import IconButtons from "../IconButtons/IconButtons";
-import TxTsNavBarLogo from "../../assets/TxTsNavBarLogo.png"
 
 function SideBar() {
   function handlerExit() {
@@ -10,9 +9,7 @@ function SideBar() {
   }
   return (
     <div className={style.sideBar}>
-      <div className={style.containerLogoTxTs}>
-          <img className={style.image} src={TxTsNavBarLogo} alt="TxTsLogo" />
-      </div>
+      
       <IconButtons
         iconButton={[
           { nameIcon: "bx bx-user", directTo: "/home/profile" },

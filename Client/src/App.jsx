@@ -11,15 +11,18 @@ import { useSelector } from "react-redux"
 import { Toaster } from "sonner"
 import NavBar from "./Components/NavBar/NavBar"
 import SideBar from "./Components/SideBar/SideBar"
+import { useLocation } from "react-router-dom"
 function App() {
   const { auth } = useSelector(state => state.auth);
-
+  const {pathname} = useLocation()
+  const nav = pathname === "/";
+  const Side = pathname === "/register";
   return (
     <div>
+     
       
-      <NavBar/>
-      <SideBar/>
-
+        {nav || Side ? null : <NavBar/>}
+        {Side || nav ? null : <SideBar/>}
       <Routes>
         <Route index element={<Register/>}/>
         <Route path="/register" element={<Register/>}/>
