@@ -8,7 +8,8 @@
     top:0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.699);
-    // color: white;
+    opacity: 0;
+    transition: opacity .4s ;
     .modal{
         @include area(40%, 45vh);
         @include centrar-elemento(space-around, center, column);
@@ -17,9 +18,10 @@
         padding: 0 20px;
         background-color: white;
         position: relative;
-        outline: 3px solid $Violeta;
+        // outline: 3px solid $Violeta;
         p{
-            font-weight: $light
+            font-weight: $light;
+            font-size: 15px
         }
         .btn{
             @include centrar-elemento(center, center);
@@ -33,6 +35,13 @@
             right: -10px;
             cursor: pointer;
         }
+        
     }
-
+}
+.modalVisible{
+    opacity: 1;
+}
+.closeModal{
+    opacity: 0;
+    transition: opacity .5s ;
 }
