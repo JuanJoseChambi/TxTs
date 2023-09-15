@@ -3,8 +3,10 @@ import style from "./Profile.module.scss";
 import UpDateInfo from "../../Components/UpDateInfo/UpDateInfo";
 import axios from "axios";
 import NotUser from "../../assets/NotUser.png"
+import { useSelector } from "react-redux";
 
 function Profile() {
+  const {image, bio} = useSelector(state => state.info)
 
   const [upDate, setUpDate] = useState({
     nombre:"",
@@ -32,12 +34,18 @@ function Profile() {
           <UpDateInfo actionPress={handlerUpDate} state={{set:setUpDate, stte:upDate}} title={"Email"} info={"juan@gmail.com"}/>
         </div>
         <div className={style.block}>
-          <UpDateInfo actionPress={handlerUpDate} state={{set:setUpDate, stte:upDate}} title={"Password"} info={"*********"}/>
+          <UpDateInfo actionPress={handlerUpDate} state={{set:setUpDate, stte:upDate}} title={"Password"} info={"*******"}/>
         </div>
       </div>
       <div className={style.imageUser}>
         <div className={style.containerImage}>
-          <img src={NotUser} alt="NotUserImage" />
+          <img src={image ? image : NotUser} alt="NotUserImage" />
+        </div>
+        <div className={style.bio}>
+          <h3>Bigrafia</h3>
+          <p>
+            {bio ? bio : "Agregar Biografia"}
+          </p>
         </div>
       </div>
     </div>
