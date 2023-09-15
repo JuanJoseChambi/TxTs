@@ -1,13 +1,13 @@
 import React from "react";
 import style from "./Profile.module.scss";
-import Inputs from "../../Components/Inputs/Inputs";
 import UpDateInfo from "../../Components/UpDateInfo/UpDateInfo";
 
 function Profile() {
   return (
     <div className={style.viewProfile}>
       <div>
-        <UpDateInfo/>
+        <UpDateInfo title={"Email"} info={"juan@gmail.com"}/>
+
       </div>
     </div>
   );
