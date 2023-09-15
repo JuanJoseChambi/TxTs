@@ -14,7 +14,7 @@ function UpDateInfo({ title, info, state, action}) {
                     <i onClick={() => setActiveModal(!activeModal)} class='bx bxs-edit'></i>
             </div>
         </div>
-        {activeModal? <Modal setActiveModal={setActiveModal}/> : null}
+        {activeModal? <Modal close={() => setActiveModal(!activeModal)}/> : null}
     </>
   )
 }

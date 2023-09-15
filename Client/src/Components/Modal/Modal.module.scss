@@ -1,4 +1,5 @@
 @import "../../Style/mixins";
+@import "../../Style/variables";
 
 .viewModal {
     @include area(100%, 100vh);
@@ -12,9 +13,26 @@
         @include area(40%, 45vh);
         @include centrar-elemento(space-around, center, column);
         text-align: center;
-        border-radius: 50px;
+        border-radius: 25px;
         padding: 0 20px;
         background-color: white;
+        position: relative;
+        outline: 3px solid $Violeta;
+        p{
+            font-weight: $light
+        }
+        .btn{
+            @include centrar-elemento(center, center);
+            @include area (40px, 40px);
+            font-size: 40px;
+            color: $Violeta;
+            border-radius: 50%;
+            background-color: white;
+            position: absolute;
+            top: -15px;
+            right: -10px;
+            cursor: pointer;
+        }
     }
 
 }
