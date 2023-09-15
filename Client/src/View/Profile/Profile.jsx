@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./Profile.module.scss";
 import UpDateInfo from "../../Components/UpDateInfo/UpDateInfo";
 
 function Profile() {
+
+  const [upDate, setUpDate] = useState({
+    nombre:"",
+    apellido:"",
+    nombreUsuario:"",
+    email:"",
+    password:""
+  })
+
   return (
     <div className={style.viewProfile}>
       <div>
+        <UpDateInfo state={{set:setUpDate, stte:upDate}} title={"Nombre"} info={"Jose"}/>
+        <UpDateInfo title={"Apellido"} info={"Chambi"}/>
+        <UpDateInfo title={"Nombre de Usuario"} info={"Jotta"}/>
+        <UpDateInfo title={"Email"} info={"juan@gmail.com"}/>
         <UpDateInfo title={"Email"} info={"juan@gmail.com"}/>
 
       </div>

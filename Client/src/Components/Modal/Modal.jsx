@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import style from "./Modal.module.scss"
 import Inputs from '../Inputs/Inputs'
 
-function Modal({update, close}) {
+function Modal({update, title, text, close}) {
     const [visibleModal, setVisibleModal] = useState(true)
 
     function hanlderClose () {
@@ -34,18 +34,24 @@ function Modal({update, close}) {
   return (
     <div className={`${style.viewModal} ${!visibleModal && style.closeModal}`} id='modal'>
        <div className={style.modal}>
-        <button className={style.btn} onClick={hanlderClose}>
-            <i  class='bx bx-x-circle'></i>    
-        </button>
-        <h2>Modificar Email</h2>
+        <button className={style.btn} onClick={hanlderClose}><i  class='bx bx-x-circle'></i></button>
+
+        {update?<h2>Modificar {title}</h2>:<h2>{title}</h2>}
+
+        {update
+        ? <p>¡Atención! Estás a punto de realizar cambios en tu perfil de usuario. Asegúrate de revisar cuidadosamente la información antes de guardar los cambios.</p> 
+        : <p>{text}</p>}
+
        {update
-       ? <p>¡Atención! Estás a punto de realizar cambios en tu perfil de usuario. Asegúrate de revisar cuidadosamente la información antes de guardar los cambios.</p> 
-       : null}
-       <Inputs
+       ? <Inputs
         register={true}
-        inputs={[{txt:"Email"}]} 
-        textBtn={"Actualizar"}
-       />
+        inputs={[{txt:`${title}`}]} 
+        textBtn={`Actualizar ${title}`}/> 
+        : <Inputs
+        register={true}
+        inputs={[{txt:`${title}`}]} 
+        textBtn={`Enviar`}/>}
+
        </div>
     </div>
   )

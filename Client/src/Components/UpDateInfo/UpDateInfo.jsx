@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import style from "./UpDateInfo.module.scss";
 import Modal from '../Modal/Modal';
 function UpDateInfo({ title, info, state, action}) {
+   
 
     const [activeModal, setActiveModal] = useState(false)
 
@@ -14,7 +15,7 @@ function UpDateInfo({ title, info, state, action}) {
                     <i onClick={() => setActiveModal(!activeModal)} class='bx bxs-edit'></i>
             </div>
         </div>
-        {activeModal? <Modal update={title} close={() => setActiveModal(!activeModal)}/> : null}
+        {activeModal? <Modal update={true} title={title} text={"Hola"} close={() => setActiveModal(!activeModal)}/> : null}
     </>
   )
 }
