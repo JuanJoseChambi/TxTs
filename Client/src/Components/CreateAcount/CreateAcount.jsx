@@ -61,12 +61,12 @@ export default function CreateAcount({ signIn }) {
         </p>
       </div>
       <form className={style.containerInputs}>
-        <Inputs nameInputs={[
+        <Inputs register={true} inputs={[
             { txt: "Nombre", typ: "text", name: "nombre"},
             { txt: "Apellido", typ: "text",name:"apellido"},
             { txt: "Nombre de Usuario", typ: "text",name:"nombreUsuario"},
             { txt: "Email", typ: "email",name:"email"},
-            { txt: "Contraseña", typ: "password",name:"contraseña"},
+            { txt: "Contraseña", typ: "password", name:"contraseña"},
             { txt: "Verificar Contraseña", typ: "password", name:"verificarContraseña"}
           ]} textBtn={"Crear Cuenta"} state={{set: setCreateAccount, stte:createAccount}} actionPress={handlerCreateUser}/>
       </form>

@@ -10,10 +10,10 @@ function NavBar() {
           <img className={style.image} src={TxTsNavBarLogo} alt="TxTsLogo" />
       </div>
 
-      <div className={style.inputContainer}>
+      <form className={style.inputContainer}>
         <label className={style.icon}><i className='bx bx-search-alt-2'></i></label>
         <input className={style.input} name="search" type="text" placeholder="Buscar"/>
-      </div>
+      </form>
 
       <div className={style.infoUser}>
         <div>

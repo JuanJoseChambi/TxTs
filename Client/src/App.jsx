@@ -30,7 +30,12 @@ function App() {
         {/*El protRou se utiliza para comprobar múltiples componentes(aveces); contiene un outlet que, si es verdadero (true), ejecuta dos rutas dentro del Route.*/}
         <Route element={<ProtectedRoouter isAllowed={auth} redirectTo={"/register"}/>}>{/*El operador !! es si es false da false y si es true da true*/} 
           <Route path="/home" element={<Home/>}/>
-          <Route path="/home/profile" element={<Profile/>}/>
+          <Route path="/profile" element={<Profile/>}/>
+          <Route path="/wallet" element={<Profile/>}/>
+          <Route path="/notifications" element={<Profile/>}/>
+          <Route path="/createPost" element={<Profile/>}/>
+          <Route path="/chats" element={<Profile/>}/>
+          <Route path="/help" element={<Profile/>}/>
         </Route>  
 
         <Route path="/home/dashboard" element={

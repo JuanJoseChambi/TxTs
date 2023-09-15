@@ -12,14 +12,14 @@ function SideBar() {
       
       <IconButtons
         iconButton={[
-          { nameIcon: "bx bx-user", directTo: "/home/profile" },
+          { nameIcon: "bx bx-user", directTo: "/profile" },
           { nameIcon: 'bx bx-home-alt-2', directTo: "/home" },
           { nameIcon: "bx bx-wallet-alt", directTo: "null" },
           { nameIcon: "bx bx-bell", directTo: "null" },
           { nameIcon: "bx bx-plus-circle", directTo: "null" },
           { nameIcon: "bx bx-chat", directTo: "null" },
         ]}/>
-       <IconButtons iconButton={[ {nameIcon:"bx bx-help-circle", directTo:"null"}, { nameIcon: "bx bx-log-in", directTo: "null", action: handlerExit}]} separationTop={true}/>
+       <IconButtons iconButton={[ {nameIcon:"bx bx-help-circle", directTo:"null"}, { nameIcon: "bx bx-log-in", directTo: "/register", action: handlerExit}]} separationTop={true}/>
     </div>
   );
 }
