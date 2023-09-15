@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import style from "./Modal.module.scss"
 import Inputs from '../Inputs/Inputs'
 
-function Modal({update, title, text, close}) {
+function Modal({update, title, text, close, state, actionPress}) {
     const [visibleModal, setVisibleModal] = useState(true)
 
     function hanlderClose () {
@@ -45,10 +45,14 @@ function Modal({update, title, text, close}) {
        {update
        ? <Inputs
         register={true}
+        state={state}
+        actionPress={actionPress}
         inputs={[{txt:`${title}`}]} 
         textBtn={`Actualizar ${title}`}/> 
         : <Inputs
+        state={state}
         register={true}
+        actionPress={actionPress}
         inputs={[{txt:`${title}`}]} 
         textBtn={`Enviar`}/>}
 

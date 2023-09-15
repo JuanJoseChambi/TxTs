@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import style from "./Profile.module.scss";
 import UpDateInfo from "../../Components/UpDateInfo/UpDateInfo";
+import axios from "axios";
 
 function Profile() {
 
@@ -12,14 +13,20 @@ function Profile() {
     password:""
   })
 
+  async function handlerUpDate () {
+    if (upDate.nombre || upDate.apellido || upDate.nombreUsuario || upDate.email || upDate.password) {
+      await axios.post("/api/update", upDate) 
+    }
+  }
+
   return (
     <div className={style.viewProfile}>
       <div>
-        <UpDateInfo state={{set:setUpDate, stte:upDate}} title={"Nombre"} info={"Jose"}/>
-        <UpDateInfo title={"Apellido"} info={"Chambi"}/>
-        <UpDateInfo title={"Nombre de Usuario"} info={"Jotta"}/>
-        <UpDateInfo title={"Email"} info={"juan@gmail.com"}/>
-        <UpDateInfo title={"Email"} info={"juan@gmail.com"}/>
+        <UpDateInfo actionPress={handlerUpDate}state={{set:setUpDate, stte:upDate}} title={"Nombre"} info={"Jose"}/>
+        <UpDateInfo actionPress={handlerUpDate} state={{set:setUpDate, stte:upDate}} title={"Apellido"} info={"Chambi"}/>
+        <UpDateInfo actionPress={handlerUpDate} state={{set:setUpDate, stte:upDate}} title={"Nombre de Usuario"} info={"Jotta"}/>
+        <UpDateInfo actionPress={handlerUpDate} state={{set:setUpDate, stte:upDate}} title={"Email"} info={"juan@gmail.com"}/>
+        <UpDateInfo actionPress={handlerUpDate} state={{set:setUpDate, stte:upDate}} title={"Email"} info={"juan@gmail.com"}/>
 
       </div>
     </div>
