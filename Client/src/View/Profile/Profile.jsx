@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import style from "./Profile.module.scss";
 import UpDateInfo from "../../Components/UpDateInfo/UpDateInfo";
 import axios from "axios";
+import NotUser from "../../assets/NotUser.png"
 
 function Profile() {
 
@@ -35,25 +36,12 @@ function Profile() {
         </div>
       </div>
       <div className={style.imageUser}>
-        
+        <div className={style.containerImage}>
+          <img src={NotUser} alt="NotUserImage" />
+        </div>
       </div>
     </div>
   );
 }
 
 export default Profile;
-{
-  /* <form className={style.formUpdate}>
-          <div>
-            <input type="text" placeholder='Nombre'/>
-            <input type="text" placeholder='Apellido'/>
-          </div>
-          <div>
-            <input type="text" placeholder='Nombre de Usuario'/>
-            <input type="text" placeholder='Emial'/>
-          </div>
-          <div>
-            <input type="text" />
-          </div>
-        </form> */
-}

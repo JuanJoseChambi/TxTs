@@ -12,8 +12,7 @@ export const auth = createSlice({
       const token = action.payload;
       state.auth = token
       localStorage.setItem("token",token)
-    },
-    
+    }
   },
 });
 export const { setAuth } = auth.actions;

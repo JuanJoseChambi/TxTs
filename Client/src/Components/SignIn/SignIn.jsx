@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { alertSuccess, alertError } from "../Alerts/Alerts";
 import { useDispatch } from "react-redux";
 import { setAuth } from "../../Redux/Slice/auth";
+import { setInfo } from "../../Redux/Slice/info";
 
 function SignIn({ createCount }) {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ function SignIn({ createCount }) {
       const { data } = await axios.post("/api/user/login", userAccess);
       if (data.access) {
         dispatch(setAuth(data.token));
+        dispatch(setInfo(data))
         navigate("/home");
         alertSuccess("Bienvenido a TxTs");
       } else {

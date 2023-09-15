@@ -12,7 +12,7 @@ function UpDateInfo({ title, info, state, actionPress}) {
             <h4>{title}</h4>
             <div className={style.edit}>
                 <p>{info}</p>
-                    <i onClick={() => setActiveModal(!activeModal)} class='bx bxs-edit'></i>
+                    <i onClick={() => setActiveModal(!activeModal)} className='bx bxs-edit'></i>
             </div>
         </div>
         {activeModal? <Modal actionPress={actionPress} state={state} update={true} title={title} text={"Hola"} close={() => setActiveModal(!activeModal)}/> : null}
