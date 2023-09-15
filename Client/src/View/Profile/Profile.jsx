@@ -21,13 +21,21 @@ function Profile() {
 
   return (
     <div className={style.viewProfile}>
-      <div>
-        <UpDateInfo actionPress={handlerUpDate}state={{set:setUpDate, stte:upDate}} title={"Nombre"} info={"Jose"}/>
-        <UpDateInfo actionPress={handlerUpDate} state={{set:setUpDate, stte:upDate}} title={"Apellido"} info={"Chambi"}/>
-        <UpDateInfo actionPress={handlerUpDate} state={{set:setUpDate, stte:upDate}} title={"Nombre de Usuario"} info={"Jotta"}/>
-        <UpDateInfo actionPress={handlerUpDate} state={{set:setUpDate, stte:upDate}} title={"Email"} info={"juan@gmail.com"}/>
-        <UpDateInfo actionPress={handlerUpDate} state={{set:setUpDate, stte:upDate}} title={"Email"} info={"juan@gmail.com"}/>
-
+      <div className={style.update}>
+        <div className={style.block}>
+          <UpDateInfo actionPress={handlerUpDate}state={{set:setUpDate, stte:upDate}} title={"Nombre"} info={"Jose"}/>
+          <UpDateInfo actionPress={handlerUpDate} state={{set:setUpDate, stte:upDate}} title={"Apellido"} info={"Chambi"}/>
+        </div>
+        <div className={style.block}>
+          <UpDateInfo actionPress={handlerUpDate} state={{set:setUpDate, stte:upDate}} title={"Nombre de Usuario"} info={"Jotta"}/>
+          <UpDateInfo actionPress={handlerUpDate} state={{set:setUpDate, stte:upDate}} title={"Email"} info={"juan@gmail.com"}/>
+        </div>
+        <div className={style.block}>
+          <UpDateInfo actionPress={handlerUpDate} state={{set:setUpDate, stte:upDate}} title={"Password"} info={"*********"}/>
+        </div>
+      </div>
+      <div className={style.imageUser}>
+        
       </div>
     </div>
   );

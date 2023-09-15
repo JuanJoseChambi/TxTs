@@ -61,7 +61,7 @@ export default function CreateAcount({ signIn }) {
         </p>
       </div>
       <form className={style.containerInputs}>
-        <Inputs register={true} inputs={[
+        <Inputs inputs={[
             { txt: "Nombre", typ: "text", name: "nombre"},
             { txt: "Apellido", typ: "text",name:"apellido"},
             { txt: "Nombre de Usuario", typ: "text",name:"nombreUsuario"},

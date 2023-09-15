@@ -64,7 +64,6 @@ function SignIn({ createCount }) {
       </div>
       <form className={style.containerInputs}>
         <Inputs
-          register={true}
           inputs={[
             { txt: "Email", typ: "email", name: "email" },
             { txt: "Contraseña", typ: "password", name: "contraseña" },

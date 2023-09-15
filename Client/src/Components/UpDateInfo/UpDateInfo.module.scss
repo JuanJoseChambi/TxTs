@@ -2,11 +2,11 @@
 
 .upDateInfo{
     @include centrar-elemento(center, start, column);
-    @include area(13%, 50px);
-    // background-color: red;
+    @include area(30%, 50px);
+    // background-color: blue;
+    font-size: 14px;
     .edit{
         @include centrar-elemento(space-between, center, row);
-        // background-color: red;
         i{
             cursor: pointer;
             margin: 0 20px;

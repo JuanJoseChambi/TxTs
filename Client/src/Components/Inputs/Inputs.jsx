@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import style from "./Inputs.module.scss"
 
-function Inputs({inputs, textBtn, state, actionPress, register}) {
+function Inputs({inputs, textBtn, state, actionPress}) {
     const [hide, setHide] = useState("password")
   return (
    <>
@@ -18,7 +18,7 @@ function Inputs({inputs, textBtn, state, actionPress, register}) {
         
         </div>
     ))}
-    {register? <button className={style.btn} onClick={actionPress}>{textBtn}</button> : null}
+    {textBtn? <button className={style.btn} onClick={actionPress}>{textBtn}</button> : null}
    </>
   )
 }

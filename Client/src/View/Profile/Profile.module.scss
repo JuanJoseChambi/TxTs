@@ -4,3 +4,15 @@
    @include area(100%, 90.9vh); 
    @include view;
 }
+.update{
+   @include area(40%, 30vh);
+   @include centrar-elemento(center, center, column);
+   background-color: white;
+   box-shadow: 0px 5px 10px 0 rgba(0, 0, 0, 0.364);
+   border-radius: 30px;
+   margin: 20px;
+   .block{
+      @include centrar-elemento(space-around,center, row);
+      @include area (100%,55px);
+   }
+}

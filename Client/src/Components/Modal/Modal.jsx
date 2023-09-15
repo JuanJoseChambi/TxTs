@@ -47,7 +47,7 @@ function Modal({update, title, text, close, state, actionPress}) {
         register={true}
         state={state}
         actionPress={actionPress}
-        inputs={[{txt:`${title}`}]} 
+        inputs={[{txt:`${title}`, typ:""}]} 
         textBtn={`Actualizar ${title}`}/> 
         : <Inputs
         state={state}
