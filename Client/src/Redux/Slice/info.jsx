@@ -1,12 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  nombre:"",
-  apellido:"",
-  nombreUsuario:"",
-  email:"",
-  contraseña:""
+  infoUser: JSON.parse(localStorage.getItem("info")) || {}
 };
+
 
 export const info = createSlice({
   name: "info",
@@ -14,11 +11,8 @@ export const info = createSlice({
   reducers: {
     setInfo: (state, action) => {
       const info = action.payload;
-      state.nombre = info.nombre;
-      state.apellido = info.apellido,
-      state.nombreUsuario = info.nombreUsuario,
-      state.email = info.email,
-      state.contraseña = info.contraseña
+      state.infoUser = info
+      localStorage.setItem("info",JSON.stringify(info))
     }
   },
 });

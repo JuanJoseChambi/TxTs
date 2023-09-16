@@ -5,6 +5,7 @@ import IconButtons from "../IconButtons/IconButtons";
 function SideBar() {
   function handlerExit() {
     localStorage.removeItem("token");
+    localStorage.removeItem("info")
     window.location.reload();
   }
   return (

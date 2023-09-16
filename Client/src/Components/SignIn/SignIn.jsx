@@ -26,7 +26,7 @@ function SignIn({ createCount }) {
       const { data } = await axios.post("/api/user/login", userAccess);
       if (data.access) {
         dispatch(setAuth(data.token));
-        dispatch(setInfo(data))
+        dispatch(setInfo(data.infoUser))
         navigate("/home");
         alertSuccess("Bienvenido a TxTs");
       } else {
