@@ -13,7 +13,7 @@ const accessUser = async (req, res) => {
       if (user) {
          if(compararContraseña(contraseña, user.contraseña)) {
            const token = generarToken(user)
-          return res.status(200).json({token:token, nombre:user.nombre, apellido:user.apellido, email:user.email, nombreUsuario:user.nombreUsuario, bio:user.bio, image:user.image ,access:true})
+          return res.status(200).json({token:token, infoUser:{nombre:user.nombre, apellido:user.apellido, email:user.email, nombreUsuario:user.nombreUsuario, bio:user.bio, image:user.image},access:true})
          }else{
           return res.status(201).json({message:"Contraseña Incorrecta"})
          }
