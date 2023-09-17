@@ -24,6 +24,7 @@ function Profile() {
 
   return (
     <div className={style.viewProfile}>
+      
       <div className={style.update}>
         <div className={style.block}>
           <UpDateInfo actionPress={handlerUpDate}state={{set:setUpDate, stte:upDate}} title={"Nombre"} info={`${infoUser.nombre}`}/>
