@@ -11,7 +11,7 @@ const { SECRET_KEY } = process.env
        const decoded = jwt.verify(token, SECRET_KEY);
        return decoded.usuario;
      } catch (error) {
-       return null; // El token es inválido o ha expirado
+       return null;
      }
    }
 
