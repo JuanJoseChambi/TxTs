@@ -8,6 +8,14 @@
     width: $wid;
     min-height: $hei;
 }
+@mixin degradeText ($direction: right, $colorLeft: #CC00FF, $colorRight: #f4f4f4) {
+  background-image: -webkit-linear-gradient($direction, $colorLeft,  $colorRight); /* Safari y Chrome */
+  background-image: -moz-linear-gradient($direction, $colorLeft,  $colorRight); /* Firefox */
+  background-image: -o-linear-gradient($direction, $colorLeft,  $colorRight); /* Opera */
+  background-image: linear-gradient(to $direction, $colorLeft,  $colorRight); /* Estándar */
+  -webkit-background-clip: text;
+  color: transparent;
+}
 @mixin view () {
   padding-top: .5%;
   padding-left: 4%;  

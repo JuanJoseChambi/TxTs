@@ -49,8 +49,8 @@ function Profile() {
 
   return (
     <div className={style.viewProfile}>
-      
       <div className={style.update}>
+      <h2 className={style.title}>Modificar Datos</h2>
         <div className={style.block}>
           <UpDateInfo actionPress={handlerUpDate} textBtn={"Enviar"} input={{typ:"text", name:"nombre"}} state={{set:setUpDate, stte:upDate}} title={"Nombre"} info={`${infoUser.nombre}`}/>
           <UpDateInfo actionPress={handlerUpDate} textBtn={"Enviar"} input={{typ:"text", name:"apellido"}} state={{set:setUpDate, stte:upDate}} title={"Apellido"} info={`${infoUser.apellido}`}/>
@@ -69,9 +69,8 @@ function Profile() {
         </div>
         <div className={style.bio}>
           <h3>Bigrafia</h3>
-          <p>
-            {infoUser.bio ? infoUser.bio : "Agregar Biografia"}
-          </p>
+          <input placeholder={infoUser.bio? infoUser.bio:"Bigrafia"} onChange={(e) => setUpDate({...upDate, bio:e.target.value})}/>
+          {!upDate.bio? <i onClick={handlerUpDate} className="bx bxs-edit"></i>: <i onClick={handlerUpDate} class='bx bx-check'></i>}
         </div>
       </div>
     </div>
