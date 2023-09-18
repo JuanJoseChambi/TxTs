@@ -19,7 +19,7 @@
 
 .infoUser {
     @include centrar-elemento(space-between,center, row);
-//   background-color: violet;
+  // background-color: violet;
   font-size: 13px;
   font-weight: $extraLight;
   color: white;
@@ -29,14 +29,11 @@
     @include centrar-elemento(center,center);
     width: 35px;
     height: 35px;
-    background-color: red;
     border-radius: 50px;
     overflow: hidden;
     margin: 0 10px;
     .image{
-    // border-radius: 50px;
-    // height: 50px;
-    width: 150%
+    width: 100%;
     }
   }
 }

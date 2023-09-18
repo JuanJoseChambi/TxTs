@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import style from "./Inputs.module.scss"
 
 function Inputs({inputs, textBtn, state, actionPress}) {
     const [hide, setHide] = useState("password")
   return (
    <>
-     {inputs?.map((input) => (
-        <div key={input.name}>
+     {inputs?.map((input, i) => (
+        <div key={i}>
 
         {input.typ === "password" 
         ? <div className={style.inputPassword} >

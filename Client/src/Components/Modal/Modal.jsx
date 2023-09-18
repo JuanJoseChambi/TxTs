@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import style from "./Modal.module.scss"
 import Inputs from '../Inputs/Inputs'
 
-function Modal({update, title, text, close, state, actionPress}) {
+function Modal({ title, text, close, state, actionPress, textBtn, input}) {
     const [visibleModal, setVisibleModal] = useState(true)
 
     function hanlderClose () {
@@ -14,14 +14,12 @@ function Modal({update, title, text, close, state, actionPress}) {
     
     useEffect(() => {
     const modal = document.getElementById("modal");
-
     function callback (entrys) {
         entrys.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add(style.modalVisible)
             }
-        })
-    }
+        })}
     const option = {
         root: null,
         rootMargin: "0px",
@@ -34,27 +32,11 @@ function Modal({update, title, text, close, state, actionPress}) {
   return (
     <div className={`${style.viewModal} ${!visibleModal && style.closeModal}`} id='modal'>
        <div className={style.modal}>
-        <button className={style.btn} onClick={hanlderClose}><i  class='bx bx-x-circle'></i></button>
+        <button className={style.btn} onClick={hanlderClose}><i  className='bx bx-x-circle'></i></button>
+        <h2>{title}</h2>
+        <p>{text}</p>
+        {textBtn ? <Inputs inputs={[{txt:title, typ:input.typ, name:input.name}]} textBtn={textBtn} actionPress={actionPress} state={state} /> : null}
 
-        {update?<h2>Modificar {title}</h2>:<h2>{title}</h2>}
-
-        {update
-        ? <p>¡Atención! Estás a punto de realizar cambios en tu perfil de usuario. Asegúrate de revisar cuidadosamente la información antes de guardar los cambios.</p> 
-        : <p>{text}</p>}
-
-       {update
-       ? <Inputs
-        register={true}
-        state={state}
-        actionPress={actionPress}
-        inputs={[{txt:`${title}`, typ:""}]} 
-        textBtn={`Actualizar ${title}`}/> 
-        : <Inputs
-        state={state}
-        register={true}
-        actionPress={actionPress}
-        inputs={[{txt:`${title}`}]} 
-        textBtn={`Enviar`}/>}
 
        </div>
     </div>

@@ -1,8 +1,13 @@
 import React from "react";
 import style from "./NavBar.module.scss";
 import TxTsNavBarLogo from "../../assets/TxTsNavBarLogo.png"
+import { useSelector } from "react-redux";
+import NotUser from "../../assets/NotUser.png"
 
 function NavBar() {
+
+  const {infoUser} = useSelector(state => state.info)
+
   return (
     <div className={style.viewNav}>
 
@@ -17,11 +22,11 @@ function NavBar() {
 
       <div className={style.infoUser}>
         <div>
-          <p>Juan Jose Chambi</p>
-          <p>@Jotta</p>
+          <p>{infoUser.nombre} {infoUser.apellido}</p>
+          <p>@{infoUser.nombreUsuario}</p>
         </div>
         <div className={style.containerImage}>
-          <img className={style.image} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFogB3c0aNtnWrl9WPR9VHd4RZXjx5ZAT4Dw&usqp=CAU" alt="UserImage" />  
+          <img className={style.image} src={infoUser.image ? infoUser.image : NotUser} alt="NotUserImage" />
         </div> 
       </div>
       
