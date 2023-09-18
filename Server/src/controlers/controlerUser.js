@@ -58,6 +58,12 @@ const update = async (req, res)  => {
   const { id } = req.params;
   const infoUser = req.body;
   try {
+
+    const nameUser = await User.findOne({where:{nombreUsuario:infoUser.nombreUsuario}})
+    const emailUser = await User.findOne({where:{email:infoUser.email}});
+    if (nameUser) return res.status(200).json({update:false, message:"Nombre De Usuario en Uso"});
+    if (emailUser) return res.status(200).json({update:false, message:"Email en Uso"});
+    
     const UserUpDate = await upDateInfoUser(id, infoUser)
     res.status(200).json(UserUpDate)
   } catch (error) {
@@ -70,9 +76,28 @@ const allUser =  async (req, res) => {
     res.status(200).json(allUsers)
 }
 
+const searchUser = async (req, res) => {
+  const searchUser = req.body;
+  try {
+    
+    const nameUser = await User.findAll({where:{nombreUsuario:searchUser.nombreUsuario}});
+    const emailUser = await User.findAll({where:{email:searchUser.email}});
+    if (nameUser || emailUser) {
+      res.status(200).json({message:"Existing user"})
+      
+    } else{
+      res.status(200).json(null)
+    }
+  } catch (error) {
+    
+  }
+
+}
+
 module.exports = {
   accessUser,
   createUser,
   allUser:[routeProtector, allUser],
-  update
+  update,
+  searchUser
 }
