@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import style from "./Inputs.module.scss"
 
 function Inputs({inputs, textBtn, state, actionPress}) {

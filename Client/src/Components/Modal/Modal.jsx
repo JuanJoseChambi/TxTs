@@ -29,13 +29,18 @@ function Modal({ title, text, close, state, actionPress, textBtn, input}) {
     observadorModal.observe(modal)
 },[])
 
+    function handlerModalAction () {
+        hanlderClose()
+        actionPress()
+    }
+
   return (
     <div className={`${style.viewModal} ${!visibleModal && style.closeModal}`} id='modal'>
        <div className={style.modal}>
         <button className={style.btn} onClick={hanlderClose}><i  className='bx bx-x-circle'></i></button>
         <h2>{title}</h2>
         <p>{text}</p>
-        {textBtn ? <Inputs inputs={[{txt:title, typ:input.typ, name:input.name}]} textBtn={textBtn} actionPress={actionPress} state={state} /> : null}
+        {textBtn ? <Inputs inputs={[{txt:title, typ:input.typ, name:input.name}]} textBtn={textBtn} actionPress={handlerModalAction} state={state} /> : null}
 
 
        </div>

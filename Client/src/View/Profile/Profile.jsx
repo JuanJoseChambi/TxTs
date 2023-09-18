@@ -5,6 +5,7 @@ import axios from "axios";
 import NotUser from "../../assets/NotUser.png"
 import { useSelector, useDispatch } from "react-redux";
 import { setInfo } from "../../Redux/Slice/info";
+import {  alertError, alertSuccess } from "../../Components/Alerts/Alerts";
 
 function Profile() {
   const { infoUser} = useSelector(state => state.info)
@@ -23,7 +24,26 @@ function Profile() {
   async function handlerUpDate () {
     if (upDate.nombre || upDate.apellido || upDate.nombreUsuario || upDate.email || upDate.contraseña || upDate.bio || upDate.image) {
       const {data} = await axios.put(`/api/user/${infoUser.id}`, upDate);
-      dispatch(setInfo(data))
+      if (data.update === false) {
+        alertError(data.message)
+        setUpDate({
+          nombreUsuario:"",
+          email:"",
+        })
+        return
+      }else{
+        dispatch(setInfo(data));
+        alertSuccess(`Tu Informacion fue Actualizada`)
+        setUpDate({
+          nombre:"",
+          apellido:"",
+          nombreUsuario:"",
+          email:"",
+          contraseña:"",
+          bio:"",
+          image:""
+        })
+      }
     }
   }
 
