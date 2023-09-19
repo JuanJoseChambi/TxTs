@@ -1,5 +1,40 @@
 @import "../../Style/mixins";
+@import "../../Style/variables";
 
 .publications{
-    @include section( 80%, 40vh, 20px);
+    @include section( 80%, 40vh, 30px, 20px);
+}
+.headerPublication{
+    @include area(100%, 10vh);
+    @include centrar-elemento(start, center, row);
+    // background-color: red;
+    font-weight: $light;
+    font-size: 13px;
+        .containerImage{
+        width: 30px;
+        height: 30px;
+        margin: 0 5px 0 15px;
+        border-radius: 50%;
+        overflow: hidden;
+        font-weight: $thin;
+        .image{
+            width: 100%;
+        }
+    }
+}
+.containerPublication{
+        // background-color: red;
+        padding: 0 15px;
+        font-weight: $light;
+        font-size: 14px;
+    .spaceImage {
+        @include centrar-elemento(center, center, row);
+        .containerImagePublications{
+            width: 20%;
+            margin: 15px 0;
+            .imagePublication{
+                width: 100%;
+            }
+        }
+    }
 }
