@@ -1,0 +1,9 @@
+@import "../../Style/mixins";
+.viewModal{
+   @include baseModal();
+   opacity: 0;
+   transition: opacity 1s;
+}
+.activeModal{
+    opacity: 1;
+}

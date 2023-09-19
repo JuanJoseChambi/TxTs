@@ -4,12 +4,8 @@ import style from "./Publications.module.scss";
 import ModalPublication from '../ModalPublication/ModalPublication';
 
 
-function Publications({image, text, nombre, nombreUsuario}) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  function handlerModal () {
-    setIsOpen(!isOpen)
-  }
+function Publications({onClick, image, text, nombre, nombreUsuario}) {
+ 
 
   return (
     <div className={style.publications}>
@@ -27,14 +23,13 @@ function Publications({image, text, nombre, nombreUsuario}) {
         {image
         ?<div className={style.spaceImage}>
           <div className={style.containerImagePublications}>
-            <img className={style.imagePublication} src={NotUser} alt="" />
+            <img onClick={() => onClick()} className={style.imagePublication} src={NotUser} alt="" />
           </div>
         </div>
         :null}
       </div>
           
       
-      {isOpen ? <ModalPublication text={text} image={image}/> : null}
     </div>
   )
 }
