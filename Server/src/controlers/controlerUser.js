@@ -76,28 +76,11 @@ const allUser =  async (req, res) => {
     res.status(200).json(allUsers)
 }
 
-const searchUser = async (req, res) => {
-  const searchUser = req.body;
-  try {
-    
-    const nameUser = await User.findAll({where:{nombreUsuario:searchUser.nombreUsuario}});
-    const emailUser = await User.findAll({where:{email:searchUser.email}});
-    if (nameUser || emailUser) {
-      res.status(200).json({message:"Existing user"})
-      
-    } else{
-      res.status(200).json(null)
-    }
-  } catch (error) {
-    
-  }
 
-}
 
 module.exports = {
   accessUser,
   createUser,
   allUser:[routeProtector, allUser],
   update,
-  searchUser
 }

@@ -11,7 +11,7 @@ const upDateInfoUser = async (id, infoUser) => {
     infoUser.nombre ? user.nombre = infoUser.nombre : user.nombre;
     infoUser.apellido ? user.apellido = infoUser.apellido : user.nombre;
     infoUser.nombreUsuario ? user.nombreUsuario = infoUser.nombreUsuario : user.nombreUsuario;
-    infoUser.email ? user.email = infoUser.email : user.email;
+    infoUser.email ? user.email = infoUser.email.toLowerCase() : user.email;
     infoUser.bio ? user.bio = infoUser.bio : user.bio;
     infoUser.image ? user.image = infoUser.image : user.image;
     if (infoUser.contraseña) {
