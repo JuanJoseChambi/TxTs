@@ -2,7 +2,7 @@
 
 .viewHome{
    @include area(100%, 90.9vh);  
-   @include view;
+   @include view(.5%, 0, 2%, 1.5%);
    @include centrar-elemento(start, center, column);
    // background-color: red;
 }
