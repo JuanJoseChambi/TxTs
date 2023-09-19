@@ -20,3 +20,13 @@
   padding-top: .5%;
   padding-left: 4%;  
 }
+
+@mixin section ($wid:50%, $hei:40vh, $mar: 20px) {
+  width: $wid;
+  min-height: $hei;
+  margin: $mar;
+  
+  background-color: white;
+  box-shadow: 0px 5px 10px 0 rgba(0, 0, 0, 0.364);
+  border-radius: 30px;
+}

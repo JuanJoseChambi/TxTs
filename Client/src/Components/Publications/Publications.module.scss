@@ -1,0 +1,5 @@
+@import "../../Style/mixins";
+
+.publications{
+    @include section( 80%, 40vh, 20px);
+}

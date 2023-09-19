@@ -3,5 +3,6 @@
 .viewHome{
    @include area(100%, 90.9vh);  
    @include view;
+   @include centrar-elemento(start, center, column);
    // background-color: red;
 }

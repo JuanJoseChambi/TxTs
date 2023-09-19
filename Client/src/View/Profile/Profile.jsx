@@ -63,13 +63,14 @@ function Profile() {
           <UpDateInfo actionPress={handlerUpDate} textBtn={"Enviar"} input={{typ:"password", name:"contraseña"}} state={{set:setUpDate, stte:upDate}} title={"Password"} info={"*******"}/>
         </div>
       </div>
+
       <div className={style.imageUser}>
         <div className={style.containerImage}>
           <img src={infoUser.image ? infoUser.image : NotUser} alt="NotUserImage" />
         </div>
         <div className={style.bio}>
-          <h3>Bigrafia</h3>
-          <input placeholder={infoUser.bio? infoUser.bio:"Bigrafia"} onChange={(e) => setUpDate({...upDate, bio:e.target.value})}/>
+          <h2>Bigrafia</h2>
+          <textarea placeholder={infoUser.bio? infoUser.bio:"Bigrafia"} onChange={(e) => setUpDate({...upDate, bio:e.target.value})}/>
           {!upDate.bio? <i onClick={handlerUpDate} className="bx bxs-edit"></i>: <i onClick={handlerUpDate} class='bx bx-check'></i>}
         </div>
       </div>

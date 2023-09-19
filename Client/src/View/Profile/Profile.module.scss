@@ -8,12 +8,8 @@
 }
 .update{
    @include centrar-elemento(center, center, column);
-   @include area(50%, 40vh);
-   // padding: 20px 100px;
-   background-color: white;
-   box-shadow: 0px 5px 10px 0 rgba(0, 0, 0, 0.364);
-   border-radius: 30px;
-   margin: 20px;
+   @include section;
+
    .title{
       margin: 20px 0;
       width: 80%;
@@ -25,13 +21,9 @@
    }
 }
 .imageUser{
-   @include area(45%, 40vh);
    @include centrar-elemento(space-around, center);
-   border-radius: 30px;
-   background-color: white;
-   margin: 20px;
+   @include section;
    margin-right: 6%;
-   box-shadow: 0px 5px 10px 0 rgba(0, 0, 0, 0.364);
    .containerImage{
       @include centrar-elemento(center,center);
       @include area (200px, 200px);
@@ -49,18 +41,23 @@
       height: 150px;
       overflow: auto;
       min-width: 55%;
-      h3{
+      h2{
          @include degradeText;
-         font-size: 16px;
+         font-size: 23px;
          letter-spacing: 1.5px;
          margin: 0 0 10px 0;
       }
-      input::placeholder{
+      textarea::placeholder{
          font-size: 13px;
          color: black;
       }
-      input{
+      textarea{
          font-size: 13px;
+         width: 90%;
+         height: 70%;
+         resize: none;
+         border: 0;
+         outline: none;
       }
       i{
          cursor: pointer;
