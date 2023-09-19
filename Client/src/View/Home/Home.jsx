@@ -5,6 +5,7 @@ function Home() {
   return (
     <div className={style.viewHome}>
       <Publications/>
+      <Publications image={true}/>
     </div>
   )
 }

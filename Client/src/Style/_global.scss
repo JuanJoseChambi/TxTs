@@ -5,4 +5,18 @@ body{
     overflow-y:auto;
     overflow-x: hidden;
     background-color: #EEEEEE;
+    
 }
+body::-webkit-scrollbar {
+    width: 7px;
+    background-color: #EEEEEE;
+  }
+  body::-webkit-scrollbar-thumb {
+    background-color: #ab0fce99;
+    border-radius: 50px;
+    // border: 1px solid rgb(255, 0, 255);
+  }
+  body::-webkit-scrollbar-thumb:hover {
+    background-color: #ab0fcecd;
+  }
+  ñ

@@ -2,7 +2,10 @@
 @import "../../Style/variables";
 
 .publications{
-    @include section( 80%, 40vh, 30px, 20px);
+    @include section( 80%, 18vh, 30px, 20px);
+    padding:  0px 15px 20px 20px;
+    margin: 15px;
+    // background-color: red;
 }
 .headerPublication{
     @include area(100%, 10vh);
@@ -13,7 +16,7 @@
         .containerImage{
         width: 30px;
         height: 30px;
-        margin: 0 5px 0 15px;
+        margin: 0 5px 0 0px;
         border-radius: 50%;
         overflow: hidden;
         font-weight: $thin;
@@ -24,16 +27,17 @@
 }
 .containerPublication{
         // background-color: red;
-        padding: 0 15px;
         font-weight: $light;
         font-size: 14px;
     .spaceImage {
         @include centrar-elemento(center, center, row);
+        margin: 20px 20px 0 20px ;
         .containerImagePublications{
             width: 20%;
-            margin: 15px 0;
             .imagePublication{
                 width: 100%;
+                border-radius: 20px;
+                cursor: pointer;
             }
         }
     }
