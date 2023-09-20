@@ -1,16 +1,16 @@
-import React, {useRef}from 'react'
+import React, {useEffect, useRef}from 'react'
 import NotUser from "../../assets/NotUser.png"
 import style from "./ModalPublication.module.scss"
-import useFadeInOnScroll from '../../Hooks/useIntersection';
+import useIntersection from '../../Hooks/useIntersection';
 
 function ModalPublication({isOpen, onClose, image, text}) {
   if(!isOpen) return null;
+  
   const modal = useRef(null);
-
-  useFadeInOnScroll(modal, style.activeModal)
+  useIntersection(modal, style.activeModal);
 
   return (
-    <div className={style.viewModal}>
+    <div className={style.viewModal} ref={modal}>
       <div className={style.modal}>
         <div className={style.containerImage}>
           {/* {image? <img src={NotUser} alt="" /> : null} */}

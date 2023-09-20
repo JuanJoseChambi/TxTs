@@ -2,8 +2,9 @@
 .viewModal{
    @include baseModal();
    opacity: 0;
-   transition: opacity 1s;
+   transition: opacity .5s;
 }
 .activeModal{
     opacity: 1;
+    // background-color: red;
 }

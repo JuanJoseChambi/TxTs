@@ -1,24 +1,25 @@
+import { useEffect } from 'react';
 
-import { useEffect, useRef } from 'react';
-
-function useFadeInOnScroll(ref, classStyle) {
-    useEffect(() => {
-
-        function callback (entrys) {
-            entrys.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add(classStyle)
-                }
-            })}
-        const option = {
-            root: null,
-            rootMargin: "0px",
-            threshold: 0.3
+function useIntersection(target, classStyle) {
+  useEffect(() => {
+    function callback(entrys) {
+      entrys.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add(classStyle);
         }
-        const observadorModal = new IntersectionObserver(callback, option);
-        observadorModal.observe(ref)
-    },[ref, classStyle])
-    
+      });
+    }
+
+    const options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.3
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+
+    observer.observe(target.current);
+  }, [target, classStyle]);
 }
 
-export default useFadeInOnScroll;
+export default useIntersection;
