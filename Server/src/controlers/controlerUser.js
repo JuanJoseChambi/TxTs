@@ -1,4 +1,4 @@
-const { User } = require("../db")
+const { User, Publications } = require("../db")
 const bcrypt = require("bcryptjs");
 const { compararContraseña, generarToken } = require("../auth/auth");
 const {routeProtector} = require("../middlewares/routeProtector");
@@ -72,7 +72,14 @@ const update = async (req, res)  => {
 }
 
 const allUser =  async (req, res) => {
-    const allUsers = await User.findAll();
+    const allUsers = await User.findAll({
+      include : [
+        {
+          model:Publications,
+          as:"Publications"
+        }
+      ]
+    });
     res.status(200).json(allUsers)
 }
 

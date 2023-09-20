@@ -10,11 +10,11 @@ module.exports = (sequelize) => {
             allowNull: false,
             primaryKey: true
         },
-        comment: {
+        text: {
             type: DataTypes.TEXT,
             allowNull: true
         },
-        addedContent: {
+        image: {
             type: DataTypes.TEXT,
             allowNull: true,
         },
