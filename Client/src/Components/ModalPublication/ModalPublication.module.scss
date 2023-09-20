@@ -3,8 +3,50 @@
    @include baseModal();
    opacity: 0;
    transition: opacity .5s;
+   i{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 40px;
+    // background-color: rgba(46, 46, 46, 0.681);
+    border-radius: 50px;
+    color: white;
+    z-index: 100;
+    transition: background-color .5s ease-in;
+   }
+   i:hover{
+    background-color: rgba(46, 46, 46, 0.681);
+   }
 }
 .activeModal{
     opacity: 1;
-    // background-color: red;
+}
+.modal{
+    @include centrar-elemento(center, start, row);
+    @include area(85%, 80vh);
+    // background-color: white;
+    // padding: 20px;
+    .containerImage{
+        width: 45%;
+        // background-color: red;
+        padding: 20px;
+        background-color: white;
+        img{
+            width: 100%;
+        }
+    }
+    .containerTextImage{
+        width: 45%;
+        padding: 20px;
+        background-color: white;
+        height: 86.6vh;
+    }
+
+
+    .containerText{
+        width: 95%;
+        min-height: 10vh;
+        background-color: white;
+        padding: 20px;
+    }
 }

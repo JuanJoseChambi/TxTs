@@ -1,11 +1,25 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import NotUser from "../../assets/NotUser.png"
 import style from "./Publications.module.scss";
 import ModalPublication from '../ModalPublication/ModalPublication';
 
 
-function Publications({onClick, image, text, nombre, nombreUsuario}) {
- 
+function Publications({image, text, nombre, nombreUsuario}) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  function handlerModal () {
+    setIsOpen(!isOpen)
+  }
+  document.body.style.overflowY = isOpen ? 'hidden' : 'auto'
+
+  // useEffect(() => {
+  //   // if (isOpen) {
+  //   // document.body.style.overflow = 'hidden'
+  //   // }else{
+  //   // document.body.style.overflowY = 'auto'
+  //   // }
+  //   document.body.style.overflowY = isOpen ? 'hidden' : 'auto'
+  // },[isOpen])
 
   return (
     <div className={style.publications}>
@@ -19,16 +33,17 @@ function Publications({onClick, image, text, nombre, nombreUsuario}) {
         </div>
       </div>
       <div className={style.containerPublication}>
-        <p>{text}</p>
+        <p onClick={handlerModal}>{text}</p>
         {image
         ?<div className={style.spaceImage}>
           <div className={style.containerImagePublications}>
-            <img onClick={() => onClick()} className={style.imagePublication} src={NotUser} alt="" />
+            <img onClick={handlerModal} className={style.imagePublication} src={NotUser} alt="" />
           </div>
         </div>
         :null}
       </div>
           
+      <ModalPublication onClose={handlerModal} text={text} image={image} isOpen={isOpen}/>
       
     </div>
   )

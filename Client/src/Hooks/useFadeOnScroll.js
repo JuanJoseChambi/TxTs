@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
-function useIntersection(target, classStyle) {
-  useEffect(() => {
+function useFadeOnScroll(target, classStyle) {
+  useEffect(() => {    
     function callback(entrys) {
       entrys.forEach(entry => {
         if (entry.isIntersecting) {
@@ -19,7 +19,7 @@ function useIntersection(target, classStyle) {
     const observer = new IntersectionObserver(callback, options);
 
     observer.observe(target.current);
-  }, [target, classStyle]);
+  }, []);
 }
 
-export default useIntersection;
+export default useFadeOnScroll;
