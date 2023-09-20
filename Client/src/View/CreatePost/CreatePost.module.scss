@@ -1,0 +1,14 @@
+@import "../../Style/mixins";
+
+.viewCreatePost{
+    @include centrar-elemento(center, center);
+    @include area (100%, 92vh);
+    @include view(0, 0%, 0, 1.5%);
+}
+.sectionCreate{
+    @include section(75%, 75vh, 0, 20px);
+    padding: 20px;
+    h2{
+        @include degradeText;
+    }
+}

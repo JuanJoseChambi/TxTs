@@ -10,16 +10,8 @@ function Publications({image, text, nombre, nombreUsuario}) {
   function handlerModal () {
     setIsOpen(!isOpen)
   }
+  
   document.body.style.overflowY = isOpen ? 'hidden' : 'auto'
-
-  // useEffect(() => {
-  //   // if (isOpen) {
-  //   // document.body.style.overflow = 'hidden'
-  //   // }else{
-  //   // document.body.style.overflowY = 'auto'
-  //   // }
-  //   document.body.style.overflowY = isOpen ? 'hidden' : 'auto'
-  // },[isOpen])
 
   return (
     <div className={style.publications}>

@@ -11,6 +11,7 @@ import { Toaster } from "sonner";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import CreatePost from "./View/CreatePost/CreatePost";
 axios.defaults.baseURL="http://localhost:3001";
 
 function App() {
@@ -31,9 +32,8 @@ function App() {
         <Route element={<ProtectedRoouter isAllowed={auth} redirectTo={"/register"}/>}>{/*El operador !! es si es false da false y si es true da true*/} 
           <Route path="/home" element={<Home/>}/>
           <Route path="/profile" element={<Profile/>}/>
-          <Route path="/wallet" element={<Profile/>}/>
           <Route path="/notifications" element={<Profile/>}/>
-          <Route path="/createPost" element={<Profile/>}/>
+          <Route path="/createPost" element={<CreatePost/>}/>
           <Route path="/chats" element={<Profile/>}/>
           <Route path="/help" element={<Profile/>}/>
         </Route>  

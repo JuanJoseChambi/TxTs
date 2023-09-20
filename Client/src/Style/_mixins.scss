@@ -8,15 +8,15 @@
     width: $wid;
     min-height: $hei;
 }
-@mixin degradeText ($direction: right, $colorLeft: #CC00FF, $colorRight: #f4f4f4) {
-  background-image: -webkit-linear-gradient($direction, $colorLeft,  $colorRight); /* Safari y Chrome */
+@mixin degradeText ($direction: left, $colorLeft: #CC00FF, $colorRight: #ffffff) {
   background-image: -moz-linear-gradient($direction, $colorLeft,  $colorRight); /* Firefox */
   background-image: -o-linear-gradient($direction, $colorLeft,  $colorRight); /* Opera */
   background-image: linear-gradient(to $direction, $colorLeft,  $colorRight); /* Estándar */
+  background-image: -webkit-linear-gradient($direction, $colorLeft,  $colorRight); /* Safari y Chrome */
   -webkit-background-clip: text;
   color: transparent;
 }
-@mixin view ($top: .5%, $right:0, $bottom:0, $left: 4%) {
+@mixin view ($top:.5%, $right:0, $bottom:0, $left: 4%) {
   padding-top: $top;
   padding-right: $right;
   padding-bottom: $bottom; 
