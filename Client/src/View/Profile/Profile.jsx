@@ -67,6 +67,7 @@ function Profile() {
       <div className={style.imageUser}>
         <div className={style.containerImage}>
           <img src={infoUser.image ? infoUser.image : NotUser} alt="NotUserImage" />
+          <i className='bx bx-image-add'></i>
         </div>
         <div className={style.bio}>
           <h2>Bigrafia</h2>
