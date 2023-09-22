@@ -67,7 +67,7 @@ const update = async (req, res)  => {
     const UserUpDate = await upDateInfoUser(id, infoUser)
     res.status(200).json(UserUpDate)
   } catch (error) {
-    res.status(500).json({message:"Error al Actualizar"})
+    res.status(500).json({error:error.message})
   }
 }
 

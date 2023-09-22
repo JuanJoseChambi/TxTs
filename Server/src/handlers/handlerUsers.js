@@ -9,7 +9,7 @@ const upDateInfoUser = async (id, infoUser) => {
         res.status(200).json({message:"El Usuario No existe"})
     }
     infoUser.nombre ? user.nombre = infoUser.nombre : user.nombre;
-    infoUser.apellido ? user.apellido = infoUser.apellido : user.nombre;
+    infoUser.apellido ? user.apellido = infoUser.apellido : user.apellido;
     infoUser.nombreUsuario ? user.nombreUsuario = infoUser.nombreUsuario : user.nombreUsuario;
     infoUser.email ? user.email = infoUser.email.toLowerCase() : user.email;
     infoUser.bio ? user.bio = infoUser.bio : user.bio;
