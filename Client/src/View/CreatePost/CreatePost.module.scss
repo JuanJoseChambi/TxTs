@@ -12,6 +12,7 @@
     // background-color: red;
     .title{
         width: 100%;
+        margin: 10px 0;
         text-align: start;
         @include degradeText;
     }
@@ -45,9 +46,12 @@
         // background-color: red;
         margin: 20px 0;
         .containerImage{
+            border-radius: 20px;
+            overflow: hidden;
             @include area(25%, 30vh);
             // background-color: blue;
             .image{
+                border-radius: 20px;
                 width: 100%;
             }
         }
