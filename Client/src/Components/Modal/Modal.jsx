@@ -3,11 +3,7 @@ import style from "./Modal.module.scss"
 import Inputs from '../Inputs/Inputs'
 import useFadeOnScroll from '../../Hooks/useFadeOnScroll'
 
-function Modal({ title, text, close, state, actionPress, textBtn, input, isOpen, children}) {
-
-    if (!isOpen) {
-      return null
-    }
+function Modal({ title, text, close, state, actionPress, textBtn, input}) {
 
     const [visibleModal, setVisibleModal] = useState(true)
     const modalUpdate = useRef(null)
@@ -35,7 +31,6 @@ function Modal({ title, text, close, state, actionPress, textBtn, input, isOpen,
         <h2>{title}</h2>
         <p>{text}</p>
         {textBtn ? <Inputs inputs={[{txt:title, typ:input.typ, name:input.name}]} textBtn={textBtn} actionPress={handlerModalAction} state={state} /> : null}
-        {children? children: null}
 
        </div>
     </div>
