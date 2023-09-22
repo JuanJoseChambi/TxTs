@@ -7,8 +7,9 @@
 }
 .sectionCreate{
     @include centrar-elemento(space-around, center, column);
-    @include section(75%, 55vh, 30px, 20px);
+    @include section(65%, 35vh, 50px, 20px);
     padding: 20px;
+    // background-color: red;
     .title{
         width: 100%;
         text-align: start;
@@ -22,8 +23,7 @@
         .textarea{
             position: relative;
             width: 98%;
-            height: 15vh;
-            // background-color: red;
+            min-height: 10vh;
             padding: 10px 10px;
             border-radius: 10px;
             // border: 0;
