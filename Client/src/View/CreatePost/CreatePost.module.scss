@@ -39,5 +39,18 @@
             cursor: pointer;
         }
     }
+    .sectionPreviewImage{
+        @include centrar-elemento(center, center);
+        @include area(100%, 28vh);
+        // background-color: red;
+        margin: 20px 0;
+        .containerImage{
+            @include area(25%, 30vh);
+            // background-color: blue;
+            .image{
+                width: 100%;
+            }
+        }
+    }
     
 }
