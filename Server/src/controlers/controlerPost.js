@@ -13,7 +13,7 @@ const createPost = async (req, res) => {
         }
         let newPost = await Publications.create(post);
         await user.addPublications(newPost)
-       res.status(200).json(newPost)
+       res.status(200).json({create:true, message:"Publicacion Creada"})
     } catch (error) {
         res.status(400).json({error:error.message})
     }
