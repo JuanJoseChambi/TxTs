@@ -1,8 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import style from "./CreatePost.module.scss";
 import Button from "../../Components/Button/Button";
 import axios from 'axios';
-import { alertSuccess } from '../../Components/Alerts/Alerts';
+import { alertError, alertSuccess } from '../../Components/Alerts/Alerts';
 
 function CreatePost() {
   const [post, setPost] = useState({
@@ -38,16 +38,25 @@ function CreatePost() {
   const info = JSON.parse(localStorage.getItem("info"))
 
   async function handlerPost () {
-    const response = await axios.post(URL, imageAcept);
-    const secureUrl = response.data.secure_url;
-    setPost({ ...post, image: secureUrl});
-
-    if (post.text || post.image) {
-      const {data} = await axios.post(`/api/post/${info.id}`, post)
-      if (data.create) {
-        alertSuccess(data.message);
+    if (imageAcept || post.text || post.image) {
+      const response = await axios.post(URL, imageAcept);
+      const secureUrl = response.data.secure_url;
+      setPost({ ...post, image: secureUrl});
+  
+      if (post.text || post.image) {
+        const {data} = await axios.post(`/api/post/${info.id}`, post)
+        if (data.create) {
+          alertSuccess(data.message);
+          setPost({
+            text:"",
+            image:""
+          })
+          setPreviewImage(null)
+        }else{
+          alertError(data.message)
+        }
       }else{
-        data.message
+        
       }
     }
   }
@@ -76,7 +85,7 @@ function CreatePost() {
                 </div>
               </div>
             :null}
-            <Button onClick={handlerPost} text={"Crear Publicacion"}/>
+            <Button onClick={(e) => {e.preventDefault(); handlerPost(); }} text={"Crear Publicacion"}/>
         </div>
     </div>
   )
