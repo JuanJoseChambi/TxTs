@@ -11,7 +11,7 @@ function CreatePost() {
   })
   const [previewImage, setPreviewImage] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
-
+  const [textValue, setTextValue] = useState(null)
   const preset_key = "TxTsData";
   const cloud_name = "dth62bdky";
   const URL = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`;
@@ -45,7 +45,7 @@ function CreatePost() {
   async function handlerPost() {
     try {
         // Crear la publicación
-        if (post.image) {
+        if (post.image || post.text) {
           const { data } = await axios.post(`/api/post/${info.id}`, post);
           if (data.create) {
             alertSuccess(data.message);
@@ -54,6 +54,7 @@ function CreatePost() {
               image: ""
             });
             setPreviewImage(null);
+            setTextValue(null)
           } else {
             alertError(data.message);
           }
@@ -78,7 +79,7 @@ function CreatePost() {
         <div className={style.sectionCreate}>
             <h2 className={style.title}>Crear Publicacion</h2>
             <div className={style.containerOptions}>
-                <textarea className={style.textarea} placeholder='Ej: Hola Hoy tuve un gran dia' onChange={(e) => setPost({...post, text:e.target.value})}></textarea>
+                <textarea className={style.textarea} value={textValue} placeholder='Ej: Hola Hoy tuve un gran dia' onChange={(e) => setPost({...post, text:e.target.value})}></textarea>
                 {selectedFile ? <i onClick={handlerSelectImage} class='bx bx-check'></i> :  <i onClick={hanlderClickInput} className='bx bx-image-add'></i>}
                 <input type="file" style={{display:"none"}} onChange={handleFileChange} ref={selectImage}/>
             </div>

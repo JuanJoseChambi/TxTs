@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import style from "./Profile.module.scss";
 import UpDateInfo from "../../Components/UpDateInfo/UpDateInfo";
 import axios from "axios";
@@ -9,6 +9,7 @@ import {  alertError, alertSuccess } from "../../Components/Alerts/Alerts";
 
 function Profile() {
   const { infoUser} = useSelector(state => state.info)
+  const [user, setUser] = useState({})
   const dispatch = useDispatch()
   const [upDate, setUpDate] = useState({
     nombre:"",
@@ -69,6 +70,22 @@ function Profile() {
       alert(error);
     }
   }
+  const token = localStorage.getItem("token")
+  async function handlerUserProfile() {
+    try {
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+      const response = await axios.get(`/api/user?id=${infoUser.id}`, { headers });
+      setUser(response);
+      console.log(response);
+    } catch (error) {
+      console.error('Error al realizar la solicitud:', error);
+    }
+  }
+  useEffect(() => {
+    handlerUserProfile()
+  },[])
 
   return (
     <div className={style.viewProfile}>
