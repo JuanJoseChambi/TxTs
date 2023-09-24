@@ -23,7 +23,7 @@ function Profile() {
   
   async function handlerUpDate () {
     if (upDate.nombre || upDate.apellido || upDate.nombreUsuario || upDate.email || upDate.contraseña || upDate.bio || upDate.image) {
-      const {data} = await axios.put(`/api/user/${infoUser.id}`, upDate);
+      const {data} = await axios.put(`/api/user/${user.id}`, upDate);
       if (data.update === false) {
         alertError(data.message)
         setUpDate({
@@ -70,15 +70,15 @@ function Profile() {
       alert(error);
     }
   }
-  const token = localStorage.getItem("token")
   async function handlerUserProfile() {
+    const token = localStorage.getItem("token")
     try {
       const headers = {
-        Authorization: `Bearer ${token}`,
+        Authorization: `${token}`,
       };
-      const response = await axios.get(`/api/user?id=${infoUser.id}`, { headers });
-      setUser(response);
-      console.log(response);
+      const {data} = await axios.get(`/api/user?id=${infoUser.id}`, { headers });
+      setUser(data);
+      console.log(data);
     } catch (error) {
       console.error('Error al realizar la solicitud:', error);
     }
@@ -93,12 +93,12 @@ function Profile() {
         <div className={style.update}>
           <h2 className={style.title}>Modificar Datos</h2>
           <div className={style.block}>
-            <UpDateInfo actionPress={handlerUpDate} textBtn={"Enviar"} input={{typ:"text", name:"nombre"}} state={{set:setUpDate, stte:upDate}} title={"Nombre"} info={`${infoUser.nombre}`}/>
-            <UpDateInfo actionPress={handlerUpDate} textBtn={"Enviar"} input={{typ:"text", name:"apellido"}} state={{set:setUpDate, stte:upDate}} title={"Apellido"} info={`${infoUser.apellido}`}/>
+            <UpDateInfo actionPress={handlerUpDate} textBtn={"Enviar"} input={{typ:"text", name:"nombre"}} state={{set:setUpDate, stte:upDate}} title={"Nombre"} info={`${user.nombre}`}/>
+            <UpDateInfo actionPress={handlerUpDate} textBtn={"Enviar"} input={{typ:"text", name:"apellido"}} state={{set:setUpDate, stte:upDate}} title={"Apellido"} info={`${user.apellido}`}/>
           </div>
           <div className={style.block}>
-            <UpDateInfo actionPress={handlerUpDate} textBtn={"Enviar"} input={{typ:"text", name:"nombreUsuario"}} state={{set:setUpDate, stte:upDate}} title={"Nombre de Usuario"} info={`${infoUser.nombreUsuario}`}/>
-            <UpDateInfo actionPress={handlerUpDate} textBtn={"Enviar"} input={{typ:"text", name:"email"}} state={{set:setUpDate, stte:upDate}} title={"Email"} info={`${infoUser.email}`}/>
+            <UpDateInfo actionPress={handlerUpDate} textBtn={"Enviar"} input={{typ:"text", name:"nombreUsuario"}} state={{set:setUpDate, stte:upDate}} title={"Nombre de Usuario"} info={`${user.nombreUsuario}`}/>
+            <UpDateInfo actionPress={handlerUpDate} textBtn={"Enviar"} input={{typ:"text", name:"email"}} state={{set:setUpDate, stte:upDate}} title={"Email"} info={`${user.email}`}/>
           </div>
           <div className={style.block}>
             <UpDateInfo actionPress={handlerUpDate} textBtn={"Enviar"} input={{typ:"password", name:"contraseña"}} state={{set:setUpDate, stte:upDate}} title={"Password"} info={"*******"}/>
@@ -107,13 +107,13 @@ function Profile() {
 
         <div className={style.imageUser}>
           <div className={style.containerImage}>
-            <img src={infoUser.image ? infoUser.image : NotUser} alt="NotUserImage" />
+            <img src={user.image ? user.image : NotUser} alt="NotUserImage" />
             {upDate.image ? <i onClick={handlerUpDate} class='bx bx-check'></i> : <i onClick={handlerEditImage} className='bx bx-image-add'></i>}
             <input type="file" style={{display:"none"}} onChange={handlerImage} ref={fileInputRef} />
           </div>
           <div className={style.bio}>
             <h2>Bigrafia</h2>
-            <textarea placeholder={infoUser.bio? infoUser.bio:"Bigrafia"} onChange={(e) => setUpDate({...upDate, bio:e.target.value})}/>
+            <textarea placeholder={user.bio? user.bio:"Bigrafia"} onChange={(e) => setUpDate({...upDate, bio:e.target.value})}/>
             {!upDate.bio? <i onClick={handlerUpDate} className="bx bxs-edit"></i>: <i onClick={handlerUpDate} class='bx bx-check'></i>}
           </div>
         </div>  
