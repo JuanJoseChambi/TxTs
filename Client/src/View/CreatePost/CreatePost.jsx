@@ -19,23 +19,28 @@ function CreatePost() {
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
+      setSelectedFile(file)
 
       const reader = new FileReader();
       reader.onload = () => {
         setPreviewImage(reader.result);
       };
       reader.readAsDataURL(file);
-
-      const formData = new FormData();
-          formData.append("file", file);
-          formData.append("upload_preset", preset_key);
-          const response = await axios.post(URL, formData);
-          const secureUrl = response.data.secure_url;
-          setPost({ ...post, image: secureUrl });
     }
   };
 
   const info = JSON.parse(localStorage.getItem("info"));
+  
+  async function handlerSelectImage () {
+    const formData = new FormData();
+    formData.append("file", selectedFile);
+    formData.append("upload_preset", preset_key);
+    const response = await axios.post(URL, formData);
+    const secureUrl = response.data.secure_url;
+    setPost({ ...post, image: secureUrl });
+    alertSuccess("Imagen Selecionada")
+    setSelectedFile(null)
+  }
 
   async function handlerPost() {
     try {
@@ -74,7 +79,7 @@ function CreatePost() {
             <h2 className={style.title}>Crear Publicacion</h2>
             <div className={style.containerOptions}>
                 <textarea className={style.textarea} placeholder='Ej: Hola Hoy tuve un gran dia' onChange={(e) => setPost({...post, text:e.target.value})}></textarea>
-                <i onClick={hanlderClickInput} className='bx bx-image-add'></i>
+                {selectedFile ? <i onClick={handlerSelectImage} class='bx bx-check'></i> :  <i onClick={hanlderClickInput} className='bx bx-image-add'></i>}
                 <input type="file" style={{display:"none"}} onChange={handleFileChange} ref={selectImage}/>
             </div>
             {previewImage

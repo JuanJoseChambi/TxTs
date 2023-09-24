@@ -3,81 +3,89 @@
 
 .viewProfile {
   @include area(100%, 90.9vh);
-  @include centrar-elemento(center, start, row);
+  @include centrar-elemento(start, start, column);
   @include view;
 }
-.update {
-  @include centrar-elemento(center, center, column);
-  @include section;
-
-  .title {
-    margin: 20px 0;
-    width: 80%;
-    @include degradeText;
-  }
-  .block {
-    @include centrar-elemento(space-around, center, row);
-    @include area(100%, 55px);
-  }
-}
-.imageUser {
-  @include centrar-elemento(space-around, center);
-  @include section;
-  margin-right: 6%;
-  .containerImage {
-    @include centrar-elemento(center, center);
-    @include area(200px, 200px);
-    border-radius: 50%;
-    overflow: hidden;
-    margin-right: 10px;
-    margin-left: 10px;
-    // background-color: red;
-    user-select: none;
-    position: relative;
-    img {
-      width: 100%;
-    }
-
-    i{
-      @include area(100%, 100%);
-      @include centrar-elemento(center, center);
-      background-color: transparent;
-      color: transparent;
-      position: absolute;
-      border-radius: 50%;
-      font-size: 19px;
-      cursor: pointer;
-      transition: font-size .5s ,color .5s ease, background-color .5s ease-in-out;
-    }
-    i:hover {
-      color: white;
-      background-color: rgba(0, 0, 0, 0.388);
-    }
-  }
-  .bio {
-    height: 150px;
-    overflow: auto;
-    min-width: 55%;
-    h2 {
+.upDateAndImage{
+  @include centrar-elemento(center,center, row);
+  width: 100%;
+  .update {
+    @include centrar-elemento(center, center, column);
+    @include section;
+  
+    .title {
+      margin: 20px 0;
+      width: 80%;
       @include degradeText;
-      font-size: 23px;
-      letter-spacing: 1.5px;
-      margin: 0 0 10px 0;
     }
-    textarea::placeholder {
-      font-size: 13px;
-      color: black;
-    }
-    textarea {
-      font-size: 13px;
-      width: 90%;
-      height: 70%;
-      resize: none;
-      border: 0;
-      outline: none;
-    }
-    i {
-      cursor: pointer;
+    .block {
+      @include centrar-elemento(space-around, center, row);
+      @include area(100%, 55px);
     }
   }
+  .imageUser {
+    @include centrar-elemento(space-around, center);
+    @include section;
+    margin-right: 6%;
+    .containerImage {
+      @include centrar-elemento(center, center);
+      @include area(200px, 200px);
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 10px;
+      margin-left: 10px;
+      // background-color: red;
+      user-select: none;
+      position: relative;
+      img {
+        width: 100%;
+      }
+  
+      i{
+        @include area(100%, 100%);
+        @include centrar-elemento(center, center);
+        background-color: transparent;
+        color: transparent;
+        position: absolute;
+        border-radius: 50%;
+        font-size: 19px;
+        cursor: pointer;
+        transition: font-size .5s ,color .5s ease, background-color .5s ease-in-out;
+      }
+      i:hover {
+        color: white;
+        background-color: rgba(0, 0, 0, 0.388);
+      }
+    }
+    .bio {
+      height: 150px;
+      overflow: auto;
+      min-width: 55%;
+      h2 {
+        @include degradeText;
+        font-size: 23px;
+        letter-spacing: 1.5px;
+        margin: 0 0 10px 0;
+      }
+      textarea::placeholder {
+        font-size: 13px;
+        color: black;
+      }
+      textarea {
+        font-size: 13px;
+        width: 90%;
+        height: 70%;
+        resize: none;
+        border: 0;
+        outline: none;
+      }
+      i {
+        cursor: pointer;
+      }
+    }
+  }  
 }
+.containerPosts{
+  @include section(93%, 150vh);
+}
+
