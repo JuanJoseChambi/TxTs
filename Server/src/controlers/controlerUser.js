@@ -14,7 +14,7 @@ const accessUser = async (req, res) => {
       if (user) {
          if(compararContraseña(contraseña, user.contraseña)) {
            const token = generarToken(user)
-          return res.status(200).json({token:token, infoUser:{id: user.id ,nombre:user.nombre, apellido:user.apellido, email:user.email, nombreUsuario:user.nombreUsuario, bio:user.bio, image:user.image},access:true})
+          return res.status(200).json({token:token, infoUser:{id:user.id ,image:user.image},access:true})
          }else{
           return res.status(201).json({message:"Contraseña Incorrecta"})
          }
@@ -72,22 +72,44 @@ const update = async (req, res)  => {
 }
 
 const allUser =  async (req, res) => {
-    const allUsers = await User.findAll({
-      include : [
+  const { id } = req.query;
+  try {
+    if (id) {
+      const user = await User.findOne({where:{id:id},   
+        include : [
         {
           model:Publications,
-          as:"Publications"
+          as:"Publications",
+          attributes:["id", "text", "image", "createdAt", "updatedAt"]
         }
-      ]
-    });
-    res.status(200).json(allUsers)
+      ]})
+      
+      const userWithoutPassword = { ...user.get() };
+      delete userWithoutPassword.contraseña;
+
+      return res.status(200).json(userWithoutPassword);
+    }else{
+      const allUsers = await User.findAll({
+        include : [
+          {
+            model:Publications,
+            as:"Publications",
+            attributes:["id", "text", "image", "createdAt", "updatedAt"]
+          }
+        ]
+      });
+      res.status(200).json(allUsers)
+    }
+  } catch (error) {
+    res.status(500).json({error:error.message})
+  }
 }
 
 
 
 module.exports = {
+  allUser:[routeProtector, allUser],
   accessUser,
   createUser,
-  allUser:[routeProtector, allUser],
   update,
 }
