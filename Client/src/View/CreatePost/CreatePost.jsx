@@ -10,54 +10,53 @@ function CreatePost() {
     image:""
   })
   const [previewImage, setPreviewImage] = useState(null);
-  const [imageAcept, setImageAcept] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+
   const preset_key = "TxTsData";
   const cloud_name = "dth62bdky";
   const URL = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`;
 
   const handleFileChange = async (e) => {
-    const selectedFile = e.target.files[0];
-    try {
-      if (selectedFile) {
-        // Vista previa de la image
-        const reader = new FileReader();
-        reader.onload = () => {
-          setPreviewImage(reader.result);
-        };
-        reader.readAsDataURL(selectedFile);
-        // Subir Imagen a la Cloudinary
-        const formData = new FormData();
-        formData.append("file", selectedFile);
-        formData.append("upload_preset", preset_key);
-        setImageAcept(formData)
-      }
-    } catch (error) {
-        alert(error);
+    const file = e.target.files[0];
+    if (file) {
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        setPreviewImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+
+      const formData = new FormData();
+          formData.append("file", file);
+          formData.append("upload_preset", preset_key);
+          const response = await axios.post(URL, formData);
+          const secureUrl = response.data.secure_url;
+          setPost({ ...post, image: secureUrl });
     }
   };
-  const info = JSON.parse(localStorage.getItem("info"))
 
-  async function handlerPost () {
-    if (imageAcept || post.text || post.image) {
-      const response = await axios.post(URL, imageAcept);
-      const secureUrl = response.data.secure_url;
-      setPost({ ...post, image: secureUrl});
-  
-      if (post.text || post.image) {
-        const {data} = await axios.post(`/api/post/${info.id}`, post)
-        if (data.create) {
-          alertSuccess(data.message);
-          setPost({
-            text:"",
-            image:""
-          })
-          setPreviewImage(null)
+  const info = JSON.parse(localStorage.getItem("info"));
+
+  async function handlerPost() {
+    try {
+        // Crear la publicación
+        if (post.image) {
+          const { data } = await axios.post(`/api/post/${info.id}`, post);
+          if (data.create) {
+            alertSuccess(data.message);
+            setPost({
+              text: "",
+              image: ""
+            });
+            setPreviewImage(null);
+          } else {
+            alertError(data.message);
+          }
         }else{
-          alertError(data.message)
+          alertError("No esta en el estado")
         }
-      }else{
-        
-      }
+    } catch (error) {
+      console.error("Error en la función handlerPost", error);
     }
   }
 
