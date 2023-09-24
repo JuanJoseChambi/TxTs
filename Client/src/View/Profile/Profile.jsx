@@ -102,7 +102,16 @@ function Profile() {
         </div>  
       </div>      
       <div className={style.containerPosts}>
-        
+        <h2 className={style.title}>Publicaciones</h2>
+        <div className={style.post}>
+          <p className={style.text}> Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam in ducimus expedita cupiditate ut omnis. Fugiat at consectetur enim, voluptatem tenetur quis delectus veritatis error est praesentium ducimus rem voluptate.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, dolorem excepturi suscipit delectus ex impedit ipsa iste eum sapiente odit? Sequi culpa incidunt, vero odio ipsa ex unde harum doloribus?
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam temporibus ea facilis at! Aliquid temporibus dolorum eos, quod magnam qui, est eligendi odit magni laborum delectus vitae voluptate. Est, ex.
+          </p>
+          <div className={style.containerImagePost}>
+            <img className={style.image} src={NotUser} alt="" />
+          </div>
+        </div>
       </div>
     </div>
   );

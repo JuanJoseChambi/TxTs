@@ -86,6 +86,32 @@
   }  
 }
 .containerPosts{
-  @include section(93%, 150vh);
+  @include centrar-elemento(start,center,column);
+  @include section(90%, 25vh);
+  padding: 20px;
+  .title{
+    @include degradeText;
+    width: 95%
+  }
+  .post{
+    @include area(95%, 20vh);
+    @include centrar-elemento(Center, center, column);
+    border-top: 1px solid #00000045;
+    border-bottom: 1px solid #00000045;
+    margin: 10px 0;
+    padding: 20px 0;
+    .text{
+      font-size: 13px;
+    }
+    .containerImagePost{
+      @include centrar-elemento(center, center);
+      @include area(20%, 35vh);
+      // background-color: red;
+      margin: 20px 0 0 0;
+      .image{
+        width: 100%;
+      }
+    }
+  }
 }
 
