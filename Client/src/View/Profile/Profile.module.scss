@@ -101,6 +101,14 @@
     border-bottom: 1px solid #00000045;
     padding: 20px 0;
     position: relative;
+    i{
+      position: absolute;
+      top: 2px;
+      right: 5px;
+      font-size: 20px;
+      z-index: 50;
+      cursor: pointer;
+    }
     .text{
       width: 100%;
       text-align: start;

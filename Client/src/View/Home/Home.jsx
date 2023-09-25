@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import style from "./Home.module.scss"
 import Publications from '../../Components/Publications/Publications'
-import ModalPublication from '../../Components/ModalPublication/ModalPublication'
 function Home() {
  
   return (

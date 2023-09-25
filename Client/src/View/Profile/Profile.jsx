@@ -6,10 +6,12 @@ import NotUser from "../../assets/NotUser.png"
 import { useSelector, useDispatch } from "react-redux";
 import { setInfo } from "../../Redux/Slice/info";
 import {  alertError, alertSuccess } from "../../Components/Alerts/Alerts";
+import Options from "../../Components/Options/Options";
 
 function Profile() {
   const { infoUser} = useSelector(state => state.info)
   const [user, setUser] = useState({})
+  const [isOpen, setIsOpen] = useState(false)
   const dispatch = useDispatch()
   const [upDate, setUpDate] = useState({
     nombre:"",
@@ -84,6 +86,9 @@ function Profile() {
       console.error('Error al realizar la solicitud:', error);
     }
   }
+  function handlerOptions () {
+    setIsOpen(!isOpen)
+  }
   useEffect(() => {
     handlerUserProfile()
   },[])
@@ -128,12 +133,14 @@ function Profile() {
             const day = fecha.getDate();
             return (
             <div key={post.id} className={style.post}>
+              <i onClick={handlerOptions} className='bx bx-dots-horizontal-rounded'></i>
+              <Options isOpen={isOpen} onClose={handlerOptions}/>
                 {post.text 
                 ? <p className={style.text}>{post.text}</p> 
                 : null}
                 {post.image 
                 ? <div className={style.containerImagePost}>
-                  <img className={style.image} src={post.image} alt="" />
+                  <img className={style.image} src={post.image} alt="Image Posted" />
                 </div> 
                 : null}
                 <p className={style.createPost}>{day}/{month}/{year}</p>

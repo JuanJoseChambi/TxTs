@@ -9,6 +9,7 @@ function Modal({ title, text, close, state, actionPress, textBtn, input}) {
     const modalUpdate = useRef(null)
     
     useFadeOnScroll(modalUpdate, style.modalVisible);
+  document.body.style.overflowY = visibleModal ? 'hidden' : 'auto'
     
     
     function hanlderClose () {
