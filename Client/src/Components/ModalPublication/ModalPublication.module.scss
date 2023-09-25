@@ -2,6 +2,7 @@
 .viewModal{
    @include baseModal();
    opacity: 0;
+   z-index: 200;
    transition: opacity .5s;
    i{
     position: absolute;
@@ -24,22 +25,24 @@
 .modal{
     @include centrar-elemento(center, start, row);
     @include area(85%, 80vh);
-    // background-color: white;
     // padding: 20px;
     .containerImage{
-        width: 45%;
+        @include centrar-elemento(center,center, column);
+        width: 30%;
+        min-height: 70vh;
         // background-color: red;
         padding: 20px;
         background-color: white;
         img{
             width: 100%;
+            margin: 25px 0;
         }
     }
     .containerTextImage{
         width: 45%;
+        height: 70vh;
         padding: 20px;
         background-color: white;
-        height: 86.6vh;
     }
 
 

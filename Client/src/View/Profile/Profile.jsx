@@ -1,17 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
-import style from "./Profile.module.scss";
-import UpDateInfo from "../../Components/UpDateInfo/UpDateInfo";
-import axios from "axios";
-import NotUser from "../../assets/NotUser.png"
 import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
+import style from "./Profile.module.scss";
+import NotUser from "../../assets/NotUser.png"
+import UpDateInfo from "../../Components/UpDateInfo/UpDateInfo";
 import { setInfo } from "../../Redux/Slice/info";
 import {  alertError, alertSuccess } from "../../Components/Alerts/Alerts";
-import Options from "../../Components/Options/Options";
-
+import Options from "../../Components/Options/Options"
 function Profile() {
   const { infoUser} = useSelector(state => state.info)
   const [user, setUser] = useState({})
-  const [isOpen, setIsOpen] = useState(false)
   const dispatch = useDispatch()
   const [upDate, setUpDate] = useState({
     nombre:"",
@@ -22,6 +20,7 @@ function Profile() {
     bio:"",
     image:""
   })
+  const [isOpen, setIsOpen] = useState(false)
   
   async function handlerUpDate () {
     if (upDate.nombre || upDate.apellido || upDate.nombreUsuario || upDate.email || upDate.contraseña || upDate.bio || upDate.image) {
@@ -85,12 +84,10 @@ function Profile() {
       console.error('Error al realizar la solicitud:', error);
     }
   }
-  function handlerOptions () {
-    setIsOpen(!isOpen)
-  }
+
   useEffect(() => {
-    handlerUserProfile()
-  },[])
+    handlerUserProfile();
+  }, []);
 
   return (
     <div className={style.viewProfile}>
@@ -133,8 +130,8 @@ function Profile() {
             const day = fecha.getDate();
             return (
             <div key={post.id} className={style.post}>
-              <i onClick={handlerOptions} className='bx bx-dots-horizontal-rounded'></i>
-              <Options isOpenOptions={isOpen}/>
+              <i onClick={() => setIsOpen(!isOpen)} className='bx bx-dots-horizontal-rounded'></i>
+              <Options isOpen={isOpen}/>
                 {post.text 
                 ? <p className={style.text}>{post.text}</p> 
                 : null}
@@ -146,7 +143,7 @@ function Profile() {
                 <p className={style.createPost}>{day}/{month}/{year}</p>
             </div>
             )}) 
-          : <p>Sin Publicaciones</p>}
+          : <p className={style.nullPost}>Sin Publicaciones</p>}
       </div>
     </div>
   );

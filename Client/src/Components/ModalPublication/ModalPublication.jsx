@@ -1,4 +1,4 @@
-import React, {useEffect, useRef}from 'react'
+import React, { useRef }from 'react'
 import NotUser from "../../assets/NotUser.png"
 import style from "./ModalPublication.module.scss"
 import useFadeOnScroll from '../../Hooks/useFadeOnScroll';

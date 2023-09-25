@@ -133,5 +133,9 @@
       right: 0;
     }
   }
+  .nullPost{
+    @include area(95%, 12vh);
+    @include centrar-elemento(center, center);
+  }
 }
 
