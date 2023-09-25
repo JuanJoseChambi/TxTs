@@ -43,6 +43,7 @@ function Profile() {
           bio:"",
           image:""
         })
+        handlerUserProfile()
       }
     }
   }
@@ -107,7 +108,7 @@ function Profile() {
 
         <div className={style.imageUser}>
           <div className={style.containerImage}>
-            <img src={user.image ? user.image : NotUser} alt="NotUserImage" />
+            <img src={infoUser.image ? infoUser.image : NotUser} alt="NotUserImage" />
             {upDate.image ? <i onClick={handlerUpDate} class='bx bx-check'></i> : <i onClick={handlerEditImage} className='bx bx-image-add'></i>}
             <input type="file" style={{display:"none"}} onChange={handlerImage} ref={fileInputRef} />
           </div>
@@ -120,15 +121,24 @@ function Profile() {
       </div>      
       <div className={style.containerPosts}>
         <h2 className={style.title}>Publicaciones</h2>
-        <div className={style.post}>
-          <p className={style.text}> Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam in ducimus expedita cupiditate ut omnis. Fugiat at consectetur enim, voluptatem tenetur quis delectus veritatis error est praesentium ducimus rem voluptate.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, dolorem excepturi suscipit delectus ex impedit ipsa iste eum sapiente odit? Sequi culpa incidunt, vero odio ipsa ex unde harum doloribus?
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam temporibus ea facilis at! Aliquid temporibus dolorum eos, quod magnam qui, est eligendi odit magni laborum delectus vitae voluptate. Est, ex.
-          </p>
-          <div className={style.containerImagePost}>
-            <img className={style.image} src={NotUser} alt="" />
-          </div>
-        </div>
+          {user.Publications? user.Publications.map((post) => {
+            const fecha = new Date(post.createdAt);
+            const year = fecha.getFullYear();
+            const month = fecha.getMonth() + 1;
+            const day = fecha.getDate();
+            return (
+            <div key={post.id} className={style.post}>
+                {post.text 
+                ? <p className={style.text}>{post.text}</p> 
+                : null}
+                {post.image 
+                ? <div className={style.containerImagePost}>
+                  <img className={style.image} src={post.image} alt="" />
+                </div> 
+                : null}
+                <p className={style.createPost}>{day}/{month}/{year}</p>
+            </div>
+          )}) : <p>Sin Publicaciones</p>}
       </div>
     </div>
   );

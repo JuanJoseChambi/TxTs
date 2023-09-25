@@ -87,30 +87,42 @@
 }
 .containerPosts{
   @include centrar-elemento(start,center,column);
-  @include section(90%, 25vh);
+  @include section(90%, 20vh);
   padding: 20px;
   .title{
     @include degradeText;
     width: 95%
   }
   .post{
-    @include area(95%, 20vh);
+    @include area(95%, 5vh);
     @include centrar-elemento(Center, center, column);
+    // background-color: red;
     border-top: 1px solid #00000045;
     border-bottom: 1px solid #00000045;
-    margin: 10px 0;
     padding: 20px 0;
+    position: relative;
     .text{
+      width: 100%;
+      text-align: start;
       font-size: 13px;
+      // background-color: blue;
     }
     .containerImagePost{
       @include centrar-elemento(center, center);
       @include area(20%, 35vh);
-      // background-color: red;
+      border-radius: 20px;
       margin: 20px 0 0 0;
       .image{
         width: 100%;
-      }
+      border-radius: 20px;
+    }
+    }
+    .createPost{
+      font-size: 12px;
+      position: absolute;
+      bottom: 10px;
+      color: rgb(156, 154, 154);
+      right: 0;
     }
   }
 }

@@ -21,10 +21,6 @@ function NavBar() {
       </form>
 
       <div className={style.infoUser}>
-        <div>
-          <p>{infoUser.nombre} {infoUser.apellido}</p>
-          <p>@{infoUser.nombreUsuario}</p>
-        </div>
         <div className={style.containerImage}>
           <img className={style.image} src={infoUser.image ? infoUser.image : NotUser} alt="NotUserImage" />
         </div> 

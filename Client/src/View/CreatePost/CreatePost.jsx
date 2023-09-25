@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import style from "./CreatePost.module.scss";
 import Button from "../../Components/Button/Button";
 import axios from 'axios';
@@ -11,7 +11,7 @@ function CreatePost() {
   })
   const [previewImage, setPreviewImage] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
-  const [textValue, setTextValue] = useState(null)
+  const [ textValue ,setTextValue] = useState(undefined)
   const preset_key = "TxTsData";
   const cloud_name = "dth62bdky";
   const URL = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`;
@@ -54,7 +54,7 @@ function CreatePost() {
               image: ""
             });
             setPreviewImage(null);
-            setTextValue(null)
+            setTextValue("")
           } else {
             alertError(data.message);
           }
