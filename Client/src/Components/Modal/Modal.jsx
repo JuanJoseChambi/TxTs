@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import style from "./Modal.module.scss"
 import Inputs from '../Inputs/Inputs'
 import useFadeOnScroll from '../../Hooks/useFadeOnScroll'

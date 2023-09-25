@@ -1,17 +1,13 @@
-import React, {useEffect, useRef} from 'react'
+import { useRef } from "react";
 import style from "./Options.module.scss"
-import useFadeOnScroll from '../../Hooks/useFadeOnScroll'
+import useFadeOnScroll from "../../Hooks/useFadeOnScroll";
 
-function Options({ isOpen }) {
+function Options({ isOpenOptions }) {
     const options = useRef(null);
-  
-    if (isOpen) {
-        useFadeOnScroll(options, style.optionVisible);
-    }
-    if (!isOpen) {
-      return null;
-    }
-  
+
+    if(!isOpenOptions) return null;
+    if (isOpenOptions) useFadeOnScroll(options, style.optionVisible);  
+    
   return (
     <div className={style.options} ref={options}>
         Options
@@ -19,4 +15,4 @@ function Options({ isOpen }) {
   )
 }
 
-export default Options
+export default Options;

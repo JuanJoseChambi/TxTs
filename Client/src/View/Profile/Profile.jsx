@@ -81,7 +81,6 @@ function Profile() {
       };
       const {data} = await axios.get(`/api/user?id=${infoUser.id}`, { headers });
       setUser(data);
-      console.log(data);
     } catch (error) {
       console.error('Error al realizar la solicitud:', error);
     }
@@ -126,7 +125,8 @@ function Profile() {
       </div>      
       <div className={style.containerPosts}>
         <h2 className={style.title}>Publicaciones</h2>
-          {user.Publications? user.Publications.map((post) => {
+          {user.Publications
+          ? user.Publications.map((post) => {
             const fecha = new Date(post.createdAt);
             const year = fecha.getFullYear();
             const month = fecha.getMonth() + 1;
@@ -134,7 +134,7 @@ function Profile() {
             return (
             <div key={post.id} className={style.post}>
               <i onClick={handlerOptions} className='bx bx-dots-horizontal-rounded'></i>
-              <Options isOpen={isOpen} onClose={handlerOptions}/>
+              <Options isOpenOptions={isOpen}/>
                 {post.text 
                 ? <p className={style.text}>{post.text}</p> 
                 : null}
@@ -145,7 +145,8 @@ function Profile() {
                 : null}
                 <p className={style.createPost}>{day}/{month}/{year}</p>
             </div>
-          )}) : <p>Sin Publicaciones</p>}
+            )}) 
+          : <p>Sin Publicaciones</p>}
       </div>
     </div>
   );
