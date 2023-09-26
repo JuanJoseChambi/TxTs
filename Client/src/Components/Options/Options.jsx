@@ -10,10 +10,8 @@ function Options({ isOpen }) {
   
   return (
     <div className={style.optionsView} ref={optionsPost}>
-      <ul className={style.options}>
-        <li>Eliminar</li>
-        <li>Editar</li>
-      </ul>
+      <p>Editar</p>
+      <p>Borrar</p>
     </div>
   )
 }
