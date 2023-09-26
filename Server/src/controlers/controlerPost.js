@@ -18,11 +18,33 @@ const createPost = async (req, res) => {
         res.status(400).json({error:error.message})
     }
 }
+const upDatePost = async (req,res) => {
+    const {id} = req.params;
+    const post = req.body;
+
+
+}
+
+const deletePost = async (req, res) => {
+    const {id} = req.params;
+    try {
+        const postdel = await Publications.findOne({where:{id:id}})
+        if (postdel) {
+            postdel.destroy();
+            res.status(200).json({message:"Post Eliminado"})
+        }
+    } catch (error) {
+        
+    }
+}
+
 const getAllPost = async (req, res) => {
 
 }
 
 module.exports = {
     createPost, 
+    upDatePost,
+    deletePost,
     getAllPost
 }

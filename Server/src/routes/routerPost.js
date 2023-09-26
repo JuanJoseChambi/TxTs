@@ -1,9 +1,11 @@
 const {Router} = require("express")
-const {createPost, getAllPost } = require("../controlers/controlerPost")
+const {createPost, getAllPost, upDatePost, deletePost } = require("../controlers/controlerPost")
 
 const routerPost = Router();
 
-routerPost.post("/:id", createPost);
+routerPost.post("/create/:id", createPost);
+routerPost.put("/update", upDatePost);
+routerPost.delete("/delete", deletePost)
 routerPost.get("/all", getAllPost);
 
 module.exports = routerPost;
