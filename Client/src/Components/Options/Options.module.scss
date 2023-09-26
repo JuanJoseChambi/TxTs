@@ -1,16 +1,18 @@
 @import "../../Style/mixins";
 .optionsView{
+    @include centrar-elemento(space-around,center, column);
     @include area(7%, 5vh);
-    background-color: rgb(92, 90, 90);
+    background-color: rgb(39, 37, 37);
     position: absolute;
     top: 15px;
     right: 25px;
     z-index: 10;
     opacity: 0;
     border-radius: 20px 0 20px 20px;
-    transition: opacity .5s ease;
-    @include centrar-elemento(space-around,center, column);
     padding: 10px 10px;
+    color: white;
+    transition: opacity .5s ease;
+    box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.713);
     p{
         font-size: 13px;
         margin: 5px 0;
@@ -20,7 +22,7 @@
         transition: color .5s;
     }
     p:hover{
-        @include degradeText(left, white, #CC00FF);
+        @include degradeText(left, white, purple);
     }
 }
 .optionVisible{

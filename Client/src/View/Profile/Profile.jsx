@@ -6,7 +6,7 @@ import NotUser from "../../assets/NotUser.png"
 import UpDateInfo from "../../Components/UpDateInfo/UpDateInfo";
 import { setInfo } from "../../Redux/Slice/info";
 import {  alertError, alertSuccess } from "../../Components/Alerts/Alerts";
-import Options from "../../Components/Options/Options"
+import UserPosts from "../../Components/UserPosts/UserPosts";
 function Profile() {
   const { infoUser} = useSelector(state => state.info)
   const [user, setUser] = useState({})
@@ -20,7 +20,6 @@ function Profile() {
     bio:"",
     image:""
   })
-  const [isOpen, setIsOpen] = useState(false)
   
   async function handlerUpDate () {
     if (upDate.nombre || upDate.apellido || upDate.nombreUsuario || upDate.email || upDate.contraseña || upDate.bio || upDate.image) {
@@ -119,32 +118,10 @@ function Profile() {
             {!upDate.bio? <i onClick={handlerUpDate} className="bx bxs-edit"></i>: <i onClick={handlerUpDate} class='bx bx-check'></i>}
           </div>
         </div>  
-      </div>      
-      <div className={style.containerPosts}>
-        <h2 className={style.title}>Publicaciones</h2>
-          {user.Publications
-          ? user.Publications.map((post) => {
-            const fecha = new Date(post.createdAt);
-            const year = fecha.getFullYear();
-            const month = fecha.getMonth() + 1;
-            const day = fecha.getDate();
-            return (
-            <div key={post.id} className={style.post}>
-              <i onClick={() => setIsOpen(isOpen === post.id ? null : post.id)} className='bx bx-dots-horizontal-rounded'></i>
-              {isOpen === post.id && <Options isOpen={true} />}
-                {post.text 
-                ? <p className={style.text}>{post.text}</p> 
-                : null}
-                {post.image 
-                ? <div className={style.containerImagePost}>
-                  <img className={style.image} src={post.image} alt="Image Posted" />
-                </div> 
-                : null}
-                <p className={style.createPost}>{day}/{month}/{year}</p>
-            </div>
-            )}) 
-          : <p className={style.nullPost}>Sin Publicaciones</p>}
-      </div>
+      </div>     
+      
+      <UserPosts user={user} upDate={handlerUserProfile}/>
+
     </div>
   );
 }

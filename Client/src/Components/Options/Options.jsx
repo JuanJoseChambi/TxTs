@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import style from "./Options.module.scss"
 import useFadeOnScroll from "../../Hooks/useFadeOnScroll";
 
-function Options({ isOpen }) {
+function Options({ isOpen, children }) {
   if(!isOpen) return null;
 
   const optionsPost = useRef(null);
@@ -10,8 +10,7 @@ function Options({ isOpen }) {
   
   return (
     <div className={style.optionsView} ref={optionsPost}>
-      <p>Editar</p>
-      <p>Borrar</p>
+        {children}
     </div>
   )
 }

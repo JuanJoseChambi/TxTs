@@ -1,0 +1,39 @@
+@import "../../Style/mixins";
+.viewModalUpDate {
+  @include baseModal();
+  z-index: 200;
+}
+.modalUpDate {
+  @include area(50%, 30vh);
+  @include centrar-elemento(space-around, center, column);
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 5px 10px 15px 0 rgba(0, 0, 0, 0.508);
+  position: relative;
+  i {
+    @include centrar-elemento(center, center);
+    width: 30px;
+    height: 30px;
+    // background-color: red;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  .title {
+    width: 93%;
+    @include degradeText;
+    margin: 0 0 10px 0;
+  }
+  textarea {
+    width: 90%;
+    // height: auto;
+    min-height: 10vh;
+    max-height: 30vh;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    margin: 0 0 20px 0;
+    resize: vertical;
+  }
+}
