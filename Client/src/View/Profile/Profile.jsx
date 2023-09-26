@@ -130,8 +130,8 @@ function Profile() {
             const day = fecha.getDate();
             return (
             <div key={post.id} className={style.post}>
-              <i onClick={() => setIsOpen(!isOpen)} className='bx bx-dots-horizontal-rounded'></i>
-              <Options isOpen={isOpen}/>
+              <i onClick={() => setIsOpen(isOpen === post.id ? null : post.id)} className='bx bx-dots-horizontal-rounded'></i>
+              {isOpen === post.id && <Options isOpen={true} />}
                 {post.text 
                 ? <p className={style.text}>{post.text}</p> 
                 : null}

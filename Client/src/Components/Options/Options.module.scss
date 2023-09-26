@@ -3,11 +3,22 @@
     height: 100px;
     background-color: rgb(92, 90, 90);
     position: absolute;
-    top: 5px;
+    top: 20px;
     right: 0;
     z-index: 10;
     opacity: 0;
     transition: opacity .5s ease;
+    .options{
+        width: 100%;
+        margin: 0;
+        li{
+            width: 100%;
+            // background-color: red;
+            margin: 0;
+            font-size: 10px;
+            list-style-type: none;
+        }
+    }
 }
 .optionVisible{
     opacity: 1;

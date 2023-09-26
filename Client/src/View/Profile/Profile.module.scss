@@ -87,26 +87,26 @@
 }
 .containerPosts{
   @include centrar-elemento(start,center,column);
-  @include section(90%, 20vh);
+  @include section(90%, 17vh);
   padding: 20px;
   .title{
     @include degradeText;
     width: 95%
   }
   .post{
-    @include area(95%, 5vh);
+    @include area(95%, 1vh);
     @include centrar-elemento(Center, center, column);
     // background-color: red;
     border-top: 1px solid #00000045;
     border-bottom: 1px solid #00000045;
-    padding: 20px 0;
+    padding: 18px 0;
     position: relative;
     i{
       position: absolute;
       top: 2px;
       right: 5px;
       font-size: 20px;
-      z-index: 50;
+      // z-index: 50;
       cursor: pointer;
     }
     .text{
