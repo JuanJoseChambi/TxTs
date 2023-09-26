@@ -4,7 +4,7 @@ const {createPost, getAllPost, upDatePost, deletePost } = require("../controlers
 const routerPost = Router();
 
 routerPost.post("/create/:id", createPost);
-routerPost.put("/update", upDatePost);
+routerPost.put("/update/:id", upDatePost);
 routerPost.delete("/delete/:id", deletePost)
 routerPost.get("/all", getAllPost);
 

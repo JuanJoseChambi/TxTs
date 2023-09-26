@@ -22,6 +22,7 @@ const upDatePost = async (req,res) => {
     const {id} = req.params;
     const post = req.body;
 
+    const idPost = await Publications.findOne({where:{id:id}});
 
 }
 
@@ -39,7 +40,12 @@ const deletePost = async (req, res) => {
 }
 
 const getAllPost = async (req, res) => {
-
+    try {
+        const allPost = await Publications.findAll();
+        res.status(200).json(allPost)
+    } catch (error) {
+        res.status(200).json({error:error.message})
+    }
 }
 
 module.exports = {
