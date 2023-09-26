@@ -6,6 +6,6 @@ const routerPost = Router();
 routerPost.post("/create/:id", createPost);
 routerPost.put("/update/:id", upDatePost);
 routerPost.delete("/delete/:id", deletePost)
-routerPost.get("/all", getAllPost);
+routerPost.get("/", getAllPost);
 
 module.exports = routerPost;

@@ -1,4 +1,5 @@
-const { User, Publications } = require("../db")
+const { User, Publications } = require("../db");
+const { handlerUpdatePost } = require("../handlers/handlerPost");
 
 const createPost = async (req, res) => {
     const {id} = req.params;
@@ -20,10 +21,14 @@ const createPost = async (req, res) => {
 }
 const upDatePost = async (req,res) => {
     const {id} = req.params;
-    const post = req.body;
-
-    const idPost = await Publications.findOne({where:{id:id}});
-
+    const postUpDate = req.body;
+    try {
+        const upDatePost = handlerUpdatePost(id, postUpDate)
+        res.status(200).json(upDatePost)
+    } catch (error) {
+        
+    }
+    
 }
 
 const deletePost = async (req, res) => {
