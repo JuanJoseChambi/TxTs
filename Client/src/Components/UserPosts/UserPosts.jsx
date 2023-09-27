@@ -5,7 +5,7 @@ import axios from 'axios';
 import { alertSuccess } from '../Alerts/Alerts';
 import Button from "../Button/Button"
 import ModalUpDate from '../ModalUpDate/ModalUpDate';
-import useFade from '../../Hooks/UseFade';
+import useFade from '../../Hooks/useFade';
 
 function UserPosts({user, upDate}) {
   const [isOpenOptions, setIsOpenOptions] = useState(false)
@@ -26,8 +26,7 @@ function UserPosts({user, upDate}) {
     setIsOpenModalUpDate(false)
     setIsOpenOptions(false)
   }
-//   { isVisible, isClosing, openModal, closeModal } = useFade();
-useFade
+  const { isVisible, isClosing, isOpen, onClose } = useFade();
   return (
     <div className={style.containerPosts}>
         <h2 className={style.title}>Publicaciones</h2>
