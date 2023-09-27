@@ -1,18 +1,19 @@
-import React from 'react'
+import React, {useEffect, useRef} from 'react'
 import style from "./ModalUpDate.module.scss"
-import Button from "../Button/Button"
+import useFadeOnScroll from '../../Hooks/useFadeOnScroll';
 
-function ModalUpDate({isOpenModalUpDate, onCloseModalUpDate, content}) {
+function ModalUpDate({isOpenModalUpDate, onCloseModalUpDate, title, children}) {
+    // document.body.style.overflowY = isOpenModalUpDate ? 'hidden' : 'auto';
     if(!isOpenModalUpDate) return null;
+    const modalUpdate = useRef(null)
 
-
+  useFadeOnScroll(modalUpdate, style.upDateModalVisible)
   return (
-    <div className={style.viewModalUpDate}>
+    <div className={style.viewModalUpDate} ref={modalUpdate}>
         <div className={style.modalUpDate}>
             <i onClick={onCloseModalUpDate} className='bx bx-x'></i>
-            <h2 className={style.title}>Editar Post</h2>
-            <textarea type="text" placeholder={content}/>
-            <Button text={"Actualizar"}/>
+            <h2 className={style.title}>{title}</h2>
+            {children}
         </div>
     </div>
   )

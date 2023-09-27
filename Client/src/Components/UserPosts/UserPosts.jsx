@@ -1,23 +1,33 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Options from "../../Components/Options/Options"
 import style from "./UserPosts.module.scss";
 import axios from 'axios';
 import { alertSuccess } from '../Alerts/Alerts';
+import Button from "../Button/Button"
 import ModalUpDate from '../ModalUpDate/ModalUpDate';
+import useFade from '../../Hooks/UseFade';
 
 function UserPosts({user, upDate}) {
   const [isOpenOptions, setIsOpenOptions] = useState(false)
   const [isOpenModalUpDate, setIsOpenModalUpDate] = useState(false)
-
+  const [upDatePost, setUpDatePost] = useState({
+    text:"",
+    image:""
+  })
   async function handlerDelete (id) {
     const {data} = await axios.delete(`/api/post/delete/${id}`)
     upDate()
     alertSuccess(data.message)
   }
-  function handlerUpDate (id) {
-
+  async function handlerUpDate (id) {
+    const updatePost = await axios.put(`/api/post/update/${id}`, upDatePost);
+    alertSuccess("Post Actaulizado")
+    upDate()
+    setIsOpenModalUpDate(false)
+    setIsOpenOptions(false)
   }
-
+//   { isVisible, isClosing, openModal, closeModal } = useFade();
+useFade
   return (
     <div className={style.containerPosts}>
         <h2 className={style.title}>Publicaciones</h2>
@@ -32,7 +42,7 @@ function UserPosts({user, upDate}) {
               <i onClick={() => setIsOpenOptions(isOpenOptions === post.id ? null : post.id)} className='bx bx-dots-horizontal-rounded'></i>
               {isOpenOptions === post.id && <Options isOpen={isOpenOptions}>
                 <p onClick={() => handlerDelete(post.id)}>Borrar</p>
-                <p onClick={() => setIsOpenModalUpDate(isOpenModalUpDate === post.id ? null : post.id)}>Editar</p>
+                <p onClick={() => {setIsOpenModalUpDate(isOpenModalUpDate === post.id ? null : post.id), setIsOpenOptions(false)}}>Editar</p>
                 </Options>}
                 {post.text 
                 ? <p className={style.text}>{post.text}</p> 
@@ -43,7 +53,10 @@ function UserPosts({user, upDate}) {
                 </div> 
                 : null}
                 <p className={style.createPost}>{day}/{month}/{year}</p>
-                {isOpenModalUpDate === post.id && <ModalUpDate isOpenModalUpDate={true} onCloseModalUpDate={() => setIsOpenModalUpDate(false)} content={post.text}/>}
+                {isOpenModalUpDate === post.id && <ModalUpDate isOpenModalUpDate={true} onCloseModalUpDate={() => setIsOpenModalUpDate(false)} title={"Editar Post"}>
+                    <textarea type="text" placeholder={post.text} onChange={(e) => setUpDatePost({...upDatePost,text: e.target.value})}/>
+                    <Button text={"Actualizar"} onClick={() => handlerUpDate(post.id)}/>   
+                </ModalUpDate>}
             </div>
             )}) 
           : <p className={style.nullPost}>Sin Publicaciones</p>}

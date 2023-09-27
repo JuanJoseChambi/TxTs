@@ -2,6 +2,11 @@
 .viewModalUpDate {
   @include baseModal();
   z-index: 200;
+  opacity: 0;
+  transition: opacity .5s;
+}
+.upDateModalVisible{
+    opacity: 1;
 }
 .modalUpDate {
   @include area(50%, 30vh);
