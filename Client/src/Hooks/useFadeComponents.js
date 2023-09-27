@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function useFade() {
+function useFadeComponents() {
   const [isVisible, setIsVisible] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
 
@@ -20,4 +20,4 @@ function useFade() {
   return { isVisible, isClosing, isOpen, onClose };
 }
 
-export default useFade;
+export default useFadeComponents;
