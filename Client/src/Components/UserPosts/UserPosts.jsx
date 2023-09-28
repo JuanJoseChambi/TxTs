@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Options from "../../Components/Options/Options"
 import style from "./UserPosts.module.scss";
 import axios from 'axios';
@@ -14,19 +14,24 @@ function UserPosts({user, upDate}) {
     text:"",
     image:""
   })
-  
+
   async function handlerDelete (id) {
     const {data} = await axios.delete(`/api/post/delete/${id}`)
     upDate()
     alertSuccess(data.message)
   }
-  async function handlerUpDate (id) {
+  async function handlerUpDateModal (id) {
     const updatePost = await axios.put(`/api/post/update/${id}`, upDatePost);
     alertSuccess("Post Actaulizado")
     upDate()
     setIsOpenModalUpDate(false)
     setIsOpenOptions(false)
   }
+  async function buttonUpdate (id) {
+    setIsOpenModalUpDate(isOpenModalUpDate === id ? null : id)
+    setIsOpenOptions(false)
+  }
+  
 
    const { isVisible, isClosing, isOpen, onClose } = useFadeComponents()
   return (
@@ -43,7 +48,7 @@ function UserPosts({user, upDate}) {
               <i onClick={() => setIsOpenOptions(isOpenOptions === post.id ? null : post.id)} className='bx bx-dots-horizontal-rounded'></i>
               {isOpenOptions === post.id && <Options isOpen={isOpenOptions}>
                 <p onClick={() => handlerDelete(post.id)}>Borrar</p>
-                <p onClick={() => {setIsOpenModalUpDate(isOpenModalUpDate === post.id ? null : post.id), setIsOpenOptions(false)}}>Editar</p>
+                <p onClick={() => buttonUpdate(post.id)}>Editar</p>
                 </Options>}
                 {post.text 
                 ? <p className={style.text}>{post.text}</p> 
@@ -56,7 +61,7 @@ function UserPosts({user, upDate}) {
                 <p className={style.createPost}>{day}/{month}/{year}</p>
                 {isOpenModalUpDate === post.id && <ModalUpDate isOpenModalUpDate={true} onCloseModalUpDate={() => setIsOpenModalUpDate(false)} title={"Editar Post"}>
                     <textarea type="text" placeholder={post.text} onChange={(e) => setUpDatePost({...upDatePost,text: e.target.value})}/>
-                    <Button text={"Actualizar"} onClick={() => handlerUpDate(post.id)}/>   
+                    <Button text={"Actualizar"} onClick={() => handlerUpDateModal(post.id)}/>   
                 </ModalUpDate>}
             </div>
             )}) 

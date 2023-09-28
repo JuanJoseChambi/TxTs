@@ -1,9 +1,8 @@
-import React, {useEffect, useRef} from 'react'
+import React, { useRef } from 'react'
 import style from "./ModalUpDate.module.scss"
 import useFadeOnScroll from '../../Hooks/useFadeOnScroll';
 
 function ModalUpDate({isOpenModalUpDate, onCloseModalUpDate, title, children}) {
-    // document.body.style.overflowY = isOpenModalUpDate ? 'hidden' : 'auto';
     if(!isOpenModalUpDate) return null;
     const modalUpdate = useRef(null)
 
