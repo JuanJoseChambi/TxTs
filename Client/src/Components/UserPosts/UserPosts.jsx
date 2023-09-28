@@ -14,6 +14,7 @@ function UserPosts({user, upDate}) {
     text:"",
     image:""
   })
+  
   async function handlerDelete (id) {
     const {data} = await axios.delete(`/api/post/delete/${id}`)
     upDate()
@@ -28,7 +29,6 @@ function UserPosts({user, upDate}) {
   }
 
    const { isVisible, isClosing, isOpen, onClose } = useFadeComponents()
-
   return (
     <div className={style.containerPosts}>
         <h2 className={style.title}>Publicaciones</h2>
@@ -40,8 +40,8 @@ function UserPosts({user, upDate}) {
             const day = fecha.getDate();
             return (
             <div key={post.id} className={style.post}>
-              <i onClick={() => {setIsOpenOptions(isOpenOptions === post.id ? null : post.id), isOpen()}} className='bx bx-dots-horizontal-rounded'></i>
-              {isOpenOptions === post.id && <Options isVisible={isVisible} isClosing={isClosing} isOpen={isOpenOptions}>
+              <i onClick={() => setIsOpenOptions(isOpenOptions === post.id ? null : post.id)} className='bx bx-dots-horizontal-rounded'></i>
+              {isOpenOptions === post.id && <Options isOpen={isOpenOptions}>
                 <p onClick={() => handlerDelete(post.id)}>Borrar</p>
                 <p onClick={() => {setIsOpenModalUpDate(isOpenModalUpDate === post.id ? null : post.id), setIsOpenOptions(false)}}>Editar</p>
                 </Options>}

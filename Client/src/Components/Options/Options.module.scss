@@ -7,12 +7,13 @@
     top: 15px;
     right: 25px;
     z-index: 10;
-    opacity: 0;
     border-radius: 20px 0 20px 20px;
     padding: 10px 10px;
     color: white;
+    opacity: 0;
     transition: opacity .5s ease;
     box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.713);
+    user-select: none;
     p{
         font-size: 13px;
         margin: 5px 0;
@@ -27,4 +28,7 @@
 }
 .optionVisible{
     opacity: 1;
+}
+.noVisible{
+    opacity: 0;
 }

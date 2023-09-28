@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import style from "./Options.module.scss"
 import useFadeOnScroll from "../../Hooks/useFadeOnScroll";
 
-function Options({ isOpen, isVisible, isClosing, children }) {
+function Options({ isOpen, children }) {
   if(!isOpen) return null;
 
   const optionsPost = useRef(null);
