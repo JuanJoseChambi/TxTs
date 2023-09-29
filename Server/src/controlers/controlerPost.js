@@ -49,14 +49,27 @@ const getAllPost = async (req, res) => {
     const { searchPost } = req.query;
     try {
         if (searchPost) {
-            const postWanted = await Publications.findAll({where:{text:{[Op.iLike]: `${searchPost}`}}})
-            if (postWanted) {
-                return res.status(200).json(postWanted);
+            const postWanted = await Publications.findAll({
+                include:[{
+                    model:User,
+                    as:"User",
+                    attributes:["nombre", "nombreUsuario", "image"]
+                }]
+            })
+            const post = postWanted.filter(post => post.text.toLowerCase().includes(searchPost.toString().toLowerCase()))
+            if (post) {
+                return res.status(200).json(post);
             }else{
                 return res.status(200).json({message:"No existe Esta Publicacion"})
             }
         }else{
-            const allPost = await Publications.findAll();
+            const allPost = await Publications.findAll({
+                include:[{
+                    model:User,
+                    as:"User",
+                    attributes:["nombre", "nombreUsuario", "image"]
+                }]
+            });
             res.status(200).json(allPost)
         }
     } catch (error) {
