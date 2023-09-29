@@ -24,11 +24,12 @@ const upDatePost = async (req,res) => {
     const postUpDate = req.body;
     try {
         const upDatePost = handlerUpdatePost(id, postUpDate)
-        res.status(200).json(upDatePost)
+        if (upDatePost) {
+            res.status(200).json({message:"El Post Fue Actaulizado"})
+        }
     } catch (error) {
-        
+        res.status(500).json({error:error.message})
     }
-    
 }
 
 const deletePost = async (req, res) => {
@@ -45,9 +46,19 @@ const deletePost = async (req, res) => {
 }
 
 const getAllPost = async (req, res) => {
+    const { searchPost } = req.query;
     try {
-        const allPost = await Publications.findAll();
-        res.status(200).json(allPost)
+        if (searchPost) {
+            const postWanted = await Publications.findAll({where:{text:{[Op.iLike]: `${searchPost}`}}})
+            if (postWanted) {
+                return res.status(200).json(postWanted);
+            }else{
+                return res.status(200).json({message:"No existe Esta Publicacion"})
+            }
+        }else{
+            const allPost = await Publications.findAll();
+            res.status(200).json(allPost)
+        }
     } catch (error) {
         res.status(200).json({error:error.message})
     }
