@@ -1,0 +1,49 @@
+.viewLoading{
+    width: 100%;
+    height: 92vh;
+    background-color: rgba(0, 0, 0, 0.759);
+    z-index:1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.viewLoading::after{
+    width: 100px;
+    content: "";
+    animation-name: loadingText;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-duration: 4s;
+    transition: color .5s;
+}
+@keyframes loadingText {
+    0%{
+        content:"Cargando.";
+        color: black;
+    }
+    20%{
+        content:"Cargando..";
+        color: gray;
+    }
+    40%{
+        content:"Cargando...";
+        color: white;
+    }
+    60%{
+        content:"Cargando....";
+        color: gray;
+    }
+    80%{
+        content:"Cargando...";
+        color: gray;
+    }
+    90%{
+        content:"Cargando..";
+        color: gray;
+    }
+    100%{
+        content:"Cargando.";
+        color: black;
+    }
+}

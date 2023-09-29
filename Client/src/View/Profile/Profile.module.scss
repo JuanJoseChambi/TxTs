@@ -5,6 +5,11 @@
   @include area(100%, 90.9vh);
   @include centrar-elemento(start, start, column);
   @include view;
+  opacity: 0;
+  transition: opacity .5s;
+}
+.profileVisible{
+  opacity: 1;
 }
 .upDateAndImage{
   @include centrar-elemento(center,center, row);

@@ -3,12 +3,16 @@ import style from "./CreatePost.module.scss";
 import Button from "../../Components/Button/Button";
 import axios from 'axios';
 import { alertError, alertSuccess } from '../../Components/Alerts/Alerts';
+import useFadeOnScroll from '../../Hooks/useFadeOnScroll';
 
 function CreatePost() {
   const [post, setPost] = useState({
     text:"",
     image:""
   })
+  const viewCreatePost = useRef(null)
+  useFadeOnScroll(viewCreatePost, style.createPostVisible)
+
   const [previewImage, setPreviewImage] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const preset_key = "TxTsData";
@@ -73,7 +77,7 @@ function CreatePost() {
   }
 
   return (
-    <div className={style.viewCreatePost}>
+    <div className={style.viewCreatePost} ref={viewCreatePost}>
         <div className={style.sectionCreate}>
             <h2 className={style.title}>Crear Publicacion</h2>
             <div className={style.containerOptions}>

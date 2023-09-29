@@ -4,5 +4,9 @@
    @include area(100%, 90.9vh);  
    @include view(.5%, 0, 2%, 1.5%);
    @include centrar-elemento(start, center, column);
-   // background-color: red;
+   opacity: 0;
+   transition: opacity .5s;
 }
+.homeVisible{
+   opacity: 1;
+} 

@@ -50,7 +50,6 @@ function App() {
         }/>
 
         <Route path='*' element={null}/>
-
       </Routes>
       <Toaster/>
     </>

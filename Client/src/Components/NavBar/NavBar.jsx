@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"
 import style from "./NavBar.module.scss";
 import TxTsNavBarLogo from "../../assets/TxTsNavBarLogo.png"
 import { useSelector } from "react-redux";
@@ -9,6 +10,7 @@ function NavBar() {
   const [searchPost, setSearchPost] = useState({
     searchPost:""
   })
+  const navigate = useNavigate()
 
   async function handlerSearchPost () {
     const {data} = await axios.get(`/api/post?searchPost=${searchPost.searchPost}`)
@@ -19,6 +21,7 @@ function NavBar() {
     if (e.key === "Enter") {
       handlerSearchPost()
       e.preventDefault()
+      navigate("/home")
     }
   }
 

@@ -7,6 +7,7 @@ import UpDateInfo from "../../Components/UpDateInfo/UpDateInfo";
 import { setInfo } from "../../Redux/Slice/info";
 import {  alertError, alertSuccess } from "../../Components/Alerts/Alerts";
 import UserPosts from "../../Components/UserPosts/UserPosts";
+import useFadeOnScroll from "../../Hooks/useFadeOnScroll";
 function Profile() {
   const { infoUser} = useSelector(state => state.info)
   const [user, setUser] = useState({})
@@ -20,6 +21,8 @@ function Profile() {
     bio:"",
     image:""
   })
+  const viewProfile = useRef(null)
+  useFadeOnScroll(viewProfile, style.profileVisible)
   
   async function handlerUpDate () {
     if (upDate.nombre || upDate.apellido || upDate.nombreUsuario || upDate.email || upDate.contraseña || upDate.bio || upDate.image) {
@@ -89,7 +92,8 @@ function Profile() {
   }, []);
 
   return (
-    <div className={style.viewProfile}>
+    <div className={style.viewProfile} ref={viewProfile}>
+      
       <div className={style.upDateAndImage}>
         <div className={style.update}>
           <h2 className={style.title}>Modificar Datos</h2>
