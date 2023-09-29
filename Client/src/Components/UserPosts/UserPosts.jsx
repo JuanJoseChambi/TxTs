@@ -33,7 +33,6 @@ function UserPosts({user, upDate}) {
   }
   
 
-   const { isVisible, isClosing, isOpen, onClose } = useFadeComponents()
   return (
     <div className={style.containerPosts}>
         <h2 className={style.title}>Publicaciones</h2>
