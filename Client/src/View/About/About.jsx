@@ -21,6 +21,9 @@ function About() {
         <h3>Lecciones Aprendidas:</h3>
 
         <p>A lo largo de este proyecto, he enfrentado desafíos técnicos que me han permitido adquirir una valiosa experiencia. He aprendido a diseñar una base de datos sólida, implementar autenticación y autorización, gestionar rutas en Express y desarrollar componentes reutilizables en React. Además, he explorado estrategias de optimización y pruebas unitarias.</p>
+        <h3>Conclusión:</h3>
+        
+        <p>El proyecto "txts" es un testimonio de mi compromiso por aprender y crecer en el campo del desarrollo web. A medida que continuo perfeccionando mis habilidades, estoy emocionado por las oportunidades que se presentarán en el camino y por los proyectos futuros que me permitirán seguir explorando nuevas tecnologías y soluciones innovadoras.</p>
         </div>
     </div>
   )

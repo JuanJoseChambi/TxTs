@@ -1,4 +1,5 @@
 @import "../../Style/mixins";
+@import "../../Style/variables";
 
 .aboutView{
     @include view();
@@ -7,5 +8,21 @@
 .sectionAbout{
     @include section(80%, 120vh);
     @include centrar-elemento(space-around,center,column);
-    padding: 20px;
+    padding: 35px;
+    h2{
+        width: 100%;
+        @include degradeText();
+    }
+    h3{
+        width: 100%;
+        font-weight: $regular;
+        @include degradeText();
+    }
+    p{
+        font-weight: $light;
+    }
+    ul li{
+        margin: 20px 0;
+        font-weight: $light;
+    }
 }
