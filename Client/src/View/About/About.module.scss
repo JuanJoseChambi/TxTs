@@ -4,6 +4,11 @@
 .aboutView{
     @include view();
     @include centrar-elemento(center,center,row);
+    opacity: 0;
+    transition: opacity .5s;
+}
+.viewAboutVisible{
+    opacity: 1;
 }
 .sectionAbout{
     @include section(80%, 120vh);

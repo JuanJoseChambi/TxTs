@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import style from "./About.module.scss"
+import useFadeOnScroll from '../../Hooks/useFadeOnScroll'
 function About() {
+    const viewAbout = useRef(null)
+    useFadeOnScroll(viewAbout, style.viewAboutVisible)
+
+
+
   return (
-    <div className={style.aboutView}>
+    <div className={style.aboutView} ref={viewAbout}>
         <div className={style.sectionAbout}>
         <h2>Título: Proyecto "txts": Explorando Tecnologías Web de Vanguardia</h2>
 
