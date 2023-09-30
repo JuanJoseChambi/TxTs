@@ -1,43 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom"
 import style from "./NavBar.module.scss";
 import TxTsNavBarLogo from "../../assets/TxTsNavBarLogo.png"
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch} from "react-redux";
 import NotUser from "../../assets/NotUser.png"
-import axios from "axios"
+import { setSearch } from "../../Redux/Slice/searchPost";
 
 function NavBar() {
-  const [searchPost, setSearchPost] = useState({
-    searchPost:""
-  })
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
   const {pathname} = useLocation()
   const home = pathname === "/home"
 
-  async function handlerSearchPost () {
-    if (searchPost.searchPost) {
-      const {data} = await axios.get(`/api/post?searchPost=${searchPost.searchPost}`)
-      console.log(data);
-    }else{
-      const {data} = await axios.get(`/api/post?searchPost=`)
-      console.log(data);
-    }
-
-  }
+  const [searchPost, setSearchPost] = useState({
+    wanted:""
+  })
 
   function handlerSend (e) {
     if (e.key === "Enter") {
-      handlerSearchPost()
       e.preventDefault()
+      dispatch(setSearch(searchPost.wanted))
       if (!home) {
         navigate("/home")
       }
     }
   }
-  
+  useEffect(() => {
 
+  },[handlerSend])
   const {infoUser} = useSelector(state => state.info)
-
   return (
     <div className={style.viewNav}>
 
@@ -47,7 +38,7 @@ function NavBar() {
 
       <form className={style.inputContainer}>
         <label className={style.icon}><i className='bx bx-search-alt-2'></i></label>
-        <input className={style.input} name="search" type="text" placeholder="Buscar" onKeyDown={(e) => handlerSend(e)} onChange={(e) => setSearchPost({searchPost:e.target.value})}/>
+        <input className={style.input} name="search" type="text" placeholder="Buscar" onKeyDown={(e) => handlerSend(e)} onChange={(e) => setSearchPost({wanted:e.target.value})}/>
       </form>
 
       <div className={style.infoUser}>
