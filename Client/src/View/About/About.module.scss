@@ -1,0 +1,11 @@
+@import "../../Style/mixins";
+
+.aboutView{
+    @include view();
+    @include centrar-elemento(center,center,row);
+}
+.sectionAbout{
+    @include section(80%, 120vh);
+    @include centrar-elemento(space-around,center,column);
+    padding: 20px;
+}

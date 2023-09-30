@@ -17,7 +17,7 @@ function SideBar() {
           { nameIcon: 'bx bx-home-alt-2', directTo: "/home" },
           { nameIcon: "bx bx-plus-circle", directTo: "/createPost" },
         ]}/>
-       <IconButtons iconButton={[ {nameIcon:"bx bx-help-circle", directTo:"null"}, { nameIcon: "bx bx-log-in", directTo: "/register", action: handlerExit}]} separationTop={true}/>
+       <IconButtons iconButton={[ {nameIcon:"bx bx-help-circle", directTo:"/about"}, { nameIcon: "bx bx-log-in", directTo: "/register", action: handlerExit}]} separationTop={true}/>
     </div>
   );
 }
