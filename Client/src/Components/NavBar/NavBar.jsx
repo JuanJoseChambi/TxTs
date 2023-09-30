@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import style from "./NavBar.module.scss";
 import TxTsNavBarLogo from "../../assets/TxTsNavBarLogo.png"
 import { useSelector } from "react-redux";
@@ -11,19 +11,30 @@ function NavBar() {
     searchPost:""
   })
   const navigate = useNavigate()
+  const {pathname} = useLocation()
+  const home = pathname === "/home"
 
   async function handlerSearchPost () {
-    const {data} = await axios.get(`/api/post?searchPost=${searchPost.searchPost}`)
-    // console.log(data);
+    if (searchPost.searchPost) {
+      const {data} = await axios.get(`/api/post?searchPost=${searchPost.searchPost}`)
+      console.log(data);
+    }else{
+      const {data} = await axios.get(`/api/post?searchPost=`)
+      console.log(data);
+    }
 
   }
+
   function handlerSend (e) {
     if (e.key === "Enter") {
       handlerSearchPost()
       e.preventDefault()
-      navigate("/home")
+      if (!home) {
+        navigate("/home")
+      }
     }
   }
+  
 
   const {infoUser} = useSelector(state => state.info)
 

@@ -3,7 +3,7 @@ import NotUser from "../../assets/NotUser.png"
 import style from "./ModalPublication.module.scss"
 import useFadeOnScroll from '../../Hooks/useFadeOnScroll';
 
-function ModalPublication({isOpen, onClose, image, text}) {
+function ModalPublication({isOpen, onClose, image, text, nombreUsuario}) {
   if(!isOpen) return null;
   
   const modal = useRef(null);
@@ -16,8 +16,8 @@ function ModalPublication({isOpen, onClose, image, text}) {
         {image && text
         ? <>
           <div className={style.containerImage}>
-            <img src={NotUser} alt="" /> 
-            <p>@Jotta</p>
+            <img src={image} alt="" /> 
+            <p>@{nombreUsuario}</p>
           </div>
           <div className={style.containerTextImage}>
             <p>{text}</p>
@@ -26,8 +26,8 @@ function ModalPublication({isOpen, onClose, image, text}) {
         : 
         (image 
         ? <div className={style.containerImage}>
-            <img src={NotUser} alt="" /> 
-            <p>@Jotta</p>
+            <img src={image} alt="" /> 
+            <p>@{nombreUsuario}</p>
           </div> 
         : <div className={style.containerText}>
             <p>{text}</p>
