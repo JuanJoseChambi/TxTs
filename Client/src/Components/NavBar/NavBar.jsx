@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom"
 import style from "./NavBar.module.scss";
 import TxTsNavBarLogo from "../../assets/TxTsNavBarLogo.png"
@@ -11,6 +11,7 @@ function NavBar() {
   const dispatch = useDispatch()
   const {pathname} = useLocation()
   const home = pathname === "/home"
+  const inputRef = useRef(null)
 
   const [searchPost, setSearchPost] = useState({
     wanted:""
@@ -25,9 +26,11 @@ function NavBar() {
       }
     }
   }
-  useEffect(() => {
-
-  },[handlerSend])
+  function deleteSearch () {
+    dispatch(setSearch(null))
+    setSearchPost({wanted:""})
+    inputRef.current.value = ""
+  }
   const {infoUser} = useSelector(state => state.info)
   return (
     <div className={style.viewNav}>
@@ -38,7 +41,8 @@ function NavBar() {
 
       <form className={style.inputContainer}>
         <label className={style.icon}><i className='bx bx-search-alt-2'></i></label>
-        <input className={style.input} name="search" type="text" placeholder="Buscar" onKeyDown={(e) => handlerSend(e)} onChange={(e) => setSearchPost({wanted:e.target.value})}/>
+        <input ref={inputRef} className={style.input} name="search" type="text" placeholder="Buscar Post" onKeyDown={(e) => handlerSend(e)} onChange={(e) => setSearchPost({wanted:e.target.value})}/>
+        {searchPost.wanted ? <i onClick={deleteSearch} className='bx bx-x'></i> : null}
       </form>
 
       <div className={style.infoUser}>

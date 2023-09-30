@@ -11,11 +11,7 @@ export const search = createSlice({
   reducers: {
     setSearch: (state, action) => {
       const searchText = action.payload;
-      if (searchText) {
-          state.search = searchText
-      }else{
-        state.search = ""
-      }
+      state.search = searchText ? searchText : null
     }
   },
 });

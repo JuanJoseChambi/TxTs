@@ -11,8 +11,7 @@ function Home() {
   const search = useSelector(state => state.search)
 
   async function handlerPosts () {
-    const {data} = await axios.get(`/api/post?searchPost=${search.search ? search.search : "" }`)
-    // const {data} = await axios.get(`/api/post?searchPost=${search ? search : ""}`)
+    const {data} = await axios.get(`/api/post?searchPost=${search.search || ""}`)
     const postOrder = data.reverse();
     setPosts(postOrder)
     console.log(data);
@@ -23,7 +22,6 @@ function Home() {
   useFadeOnScroll(viewHome, style.homeVisible)
   useEffect(() => {
     handlerPosts()
-    console.log(search.search);
   },[search])
 
   return (
