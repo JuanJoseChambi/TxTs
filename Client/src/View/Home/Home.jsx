@@ -9,7 +9,8 @@ function Home() {
   const [posts, setPosts] = useState([])
   async function handlerPosts () {
     const {data} = await axios.get(`/api/post?searchPost=`)
-    setPosts(data)
+    const postOrder = data.reverse();
+    setPosts(postOrder)
     console.log(data);
   }
 
@@ -22,7 +23,7 @@ function Home() {
   return (
     <div className={style.viewHome} ref={viewHome}>
       {posts.map(post => (
-        <Publications key={post.UserPublications} imageProfile={post.User.image} nombre={post.User.nombre} nombreUsuario={post.User.nombreUsuario} text={post.text} image={post.image}/>
+        <Publications key={post.id} imageProfile={post.User.image} nombre={post.User.nombre} nombreUsuario={post.User.nombreUsuario} text={post.text} image={post.image}/>
       ))}
     </div>
   )
