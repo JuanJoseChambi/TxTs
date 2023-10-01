@@ -25,6 +25,7 @@ const createPost = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
 const upDatePost = async (req, res) => {
   const { id } = req.params;
   const postUpDate = req.body;
