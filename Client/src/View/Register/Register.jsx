@@ -5,7 +5,8 @@ import SignIn from '../../Components/SignIn/SignIn'
 import CreateAcount from '../../Components/CreateAcount/CreateAcount'
 
 function Register() {
-  const [change, setChange] = useState(true)
+ // Estado local para cambiar entre el inicio de sesión y la creación de cuenta
+ const [change, setChange] = useState(true);
   return (
     <div className={style.viewRegister}>
       <div className={style.containerLogo}>

@@ -1,22 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import NotUser from "../../assets/NotUser.png"
 import style from "./Publications.module.scss";
 import ModalPublication from '../ModalPublication/ModalPublication';
-import { useSelector } from 'react-redux';
+import useFadeOnScroll from '../../Hooks/useFadeOnScroll';
 
 
 function Publications({image, text, nombre, nombreUsuario, imageProfile}) {
   const [isOpen, setIsOpen] = useState(false);
-
+  const publicationsRef = useRef(null)
   function handlerModal () {
     setIsOpen(!isOpen)
   }
-  const {infoUser} = useSelector(state => state.info)
-
+  useFadeOnScroll(publicationsRef, style.publicationsVisible)
   document.body.style.overflowY = isOpen ? 'hidden' : 'auto'
 
   return (
-    <div className={style.publications}>
+    <div className={style.publications} ref={publicationsRef}>
       <div className={style.headerPublication}>
         <div className={style.containerImage}>
           <img className={style.image} src={imageProfile? imageProfile : NotUser} alt="Profile Image" />

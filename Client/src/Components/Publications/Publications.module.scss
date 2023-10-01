@@ -6,6 +6,11 @@
     padding:  0px 15px 20px 20px;
     margin: 15px;
     // background-color: red;
+    opacity:0;
+    transition: opacity .7s;
+}
+.publicationsVisible{
+    opacity: 1;
 }
 .headerPublication{
     @include area(100%, 10vh);

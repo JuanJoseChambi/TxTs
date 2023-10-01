@@ -6,23 +6,34 @@ import axios from "axios"
 import { useSelector } from 'react-redux'
 
 function Home() {
-  const [posts, setPosts] = useState([])
-  const viewHome = useRef(null)
-  const search = useSelector(state => state.search)
+ // Estado local para almacenar las publicaciones
+ const [posts, setPosts] = useState([]);
 
-  async function handlerPosts () {
-    const {data} = await axios.get(`/api/post?searchPost=${search.search || ""}`)
-    const postOrder = data.reverse();
-    setPosts(postOrder)
-    console.log(data);
-    console.log(search.search);
-  }
+ // Referencia para el elemento DOM viewHome
+ const viewHome = useRef(null);
 
+ // Aplicar efecto de desvanecimiento al desplazarse
+ useFadeOnScroll(viewHome, style.homeVisible);
 
-  useFadeOnScroll(viewHome, style.homeVisible)
-  useEffect(() => {
-    handlerPosts()
-  },[search])
+ // Obtener el término de búsqueda desde el estado global
+ const search = useSelector((state) => state.search);
+
+ // Función para obtener las publicaciones desde la API
+ async function handlerPosts() {
+   try {
+     const { data } = await axios.get(`/api/post?searchPost=${search.search || ''}`);
+     // Invertir el orden de las publicaciones
+     const postOrder = data.reverse();
+     setPosts(postOrder);
+   } catch (error) {
+     console.error('Error al obtener las publicaciones:', error);
+   }
+ }
+
+ // Cargar las publicaciones cuando cambia el término de búsqueda
+ useEffect(() => {
+   handlerPosts();
+ }, [search]);
 
   return (
     <div className={style.viewHome} ref={viewHome}>

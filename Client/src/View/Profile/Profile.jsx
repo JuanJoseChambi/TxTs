@@ -9,58 +9,70 @@ import {  alertError, alertSuccess } from "../../Components/Alerts/Alerts";
 import UserPosts from "../../Components/UserPosts/UserPosts";
 import useFadeOnScroll from "../../Hooks/useFadeOnScroll";
 function Profile() {
-  const { infoUser} = useSelector(state => state.info)
-  const [user, setUser] = useState({})
-  const dispatch = useDispatch()
+  // Selector de información de usuario desde el estado global
+  const { infoUser } = useSelector((state) => state.info);
+
+  // Estado local para el usuario y datos actualizables
+  const [user, setUser] = useState({});
+  const dispatch = useDispatch();
   const [upDate, setUpDate] = useState({
-    nombre:"",
-    apellido:"",
-    nombreUsuario:"",
-    email:"",
-    contraseña:"",
-    bio:"",
-    image:""
-  })
-  const viewProfile = useRef(null)
-  useFadeOnScroll(viewProfile, style.profileVisible)
-  
-  async function handlerUpDate () {
-    if (upDate.nombre || upDate.apellido || upDate.nombreUsuario || upDate.email || upDate.contraseña || upDate.bio || upDate.image) {
-      const {data} = await axios.put(`/api/user/${user.id}`, upDate);
+    nombre: "",
+    apellido: "",
+    nombreUsuario: "",
+    email: "",
+    contraseña: "",
+    bio: "",
+    image: "",
+  });
+
+  // Referencia para el efecto de desvanecimiento en el scroll
+  const viewProfile = useRef(null);
+  useFadeOnScroll(viewProfile, style.profileVisible);
+
+  // Maneja la actualización de datos de usuario
+  async function handlerUpDate() {
+    if (upDate.nombre ||upDate.apellido ||upDate.nombreUsuario ||upDate.email ||upDate.contraseña ||upDate.bio ||upDate.image) {
+      const { data } = await axios.put(`/api/user/${user.id}`, upDate);
       if (data.update === false) {
-        alertError(data.message)
+        alertError(data.message);
         setUpDate({
-          nombreUsuario:"",
-          email:"",
-        })
-        return
-      }else{
+          nombreUsuario: "",
+          email: "",
+        });
+        return;
+      } else {
         dispatch(setInfo(data));
-        alertSuccess(`Tu Informacion fue Actualizada`)
+        alertSuccess(`Tu Información fue Actualizada`);
         setUpDate({
-          nombre:"",
-          apellido:"",
-          nombreUsuario:"",
-          email:"",
-          contraseña:"",
-          bio:"",
-          image:""
-        })
-        handlerUserProfile()
+          nombre: "",
+          apellido: "",
+          nombreUsuario: "",
+          email: "",
+          contraseña: "",
+          bio: "",
+          image: "",
+        });
+        handlerUserProfile();
       }
     }
   }
+
+  // Referencia para el input de archivo para la imagen del usuario
   const fileInputRef = useRef(null);
-  function handlerEditImage () {
+
+  // Abre el diálogo de selección de archivo para cambiar la imagen del usuario
+  function handlerEditImage() {
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
   }
 
+  // Claves y URL para cargar imágenes en Cloudinary
   const preset_key = "TxTsData";
   const cloud_name = "dth62bdky";
   const URL = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`;
 
+  // Maneja la carga de la nueva imagen del usuario
   async function handlerImage(event) {
     try {
       const file = event.target.files[0];
@@ -69,24 +81,29 @@ function Profile() {
       formData.append("upload_preset", preset_key);
       const response = await axios.post(URL, formData);
       const secureUrl = response.data.secure_url;
-      setUpDate({ ...upDate, image: secureUrl});
+      setUpDate({ ...upDate, image: secureUrl });
     } catch (error) {
       alert(error);
     }
   }
+
+  // Obtiene el perfil de usuario desde el servidor
   async function handlerUserProfile() {
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem("token");
     try {
       const headers = {
         Authorization: `${token}`,
       };
-      const {data} = await axios.get(`/api/user?id=${infoUser.id}`, { headers });
+      const { data } = await axios.get(`/api/user?id=${infoUser.id}`, {
+        headers,
+      });
       setUser(data);
     } catch (error) {
-      console.error('Error al realizar la solicitud:', error);
+      console.error("Error al realizar la solicitud:", error);
     }
   }
 
+  // Cargar el perfil de usuario al cargar el componente
   useEffect(() => {
     handlerUserProfile();
   }, []);

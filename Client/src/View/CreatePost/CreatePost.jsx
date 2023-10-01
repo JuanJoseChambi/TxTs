@@ -6,23 +6,33 @@ import { alertError, alertSuccess } from '../../Components/Alerts/Alerts';
 import useFadeOnScroll from '../../Hooks/useFadeOnScroll';
 
 function CreatePost() {
-  const [post, setPost] = useState({
-    text:"",
-    image:""
-  })
-  const viewCreatePost = useRef(null)
-  useFadeOnScroll(viewCreatePost, style.createPostVisible)
+   // Estado local para el texto y la imagen de la publicación
+   const [post, setPost] = useState({
+    text: "",
+    image: ""
+  });
 
+ // Obtiene la información del usuario desde el almacenamiento local
+ const info = JSON.parse(localStorage.getItem("info"));
+
+  // Referencia para el efecto de desvanecimiento en el scroll O al verse
+  const viewCreatePost = useRef(null);
+  useFadeOnScroll(viewCreatePost, style.createPostVisible);
+
+  // Estado local para la vista previa de la imagen y el archivo seleccionado
   const [previewImage, setPreviewImage] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
+
+  // Configuración para cargar imágenes en Cloudinary
   const preset_key = "TxTsData";
   const cloud_name = "dth62bdky";
   const URL = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`;
 
+  // Maneja el cambio de archivo seleccionado
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
-      setSelectedFile(file)
+      setSelectedFile(file);
 
       const reader = new FileReader();
       reader.onload = () => {
@@ -32,47 +42,48 @@ function CreatePost() {
     }
   };
 
-  const info = JSON.parse(localStorage.getItem("info"));
-  
-  async function handlerSelectImage () {
+  // Maneja la selección de la imagen
+  async function handlerSelectImage() {
     const formData = new FormData();
     formData.append("file", selectedFile);
     formData.append("upload_preset", preset_key);
     const response = await axios.post(URL, formData);
     const secureUrl = response.data.secure_url;
     setPost({ ...post, image: secureUrl });
-    alertSuccess("Imagen Selecionada")
-    setSelectedFile(null)
+    alertSuccess("Imagen Seleccionada");
+    setSelectedFile(null);
   }
 
+  // Maneja la creación de una nueva publicación
   async function handlerPost() {
     try {
-        // Crear la publicación
-        if (post.image || post.text) {
-          const { data } = await axios.post(`/api/post/create/${info.id}`, post);
-          if (data.create) {
-            alertSuccess(data.message);
-            setPost({
-              text: "",
-              image: ""
-            });
-            setPreviewImage(null);
-          } else {
-            alertError(data.message);
-          }
-        }else{
-          alertError("No esta en el estado")
+      if (post.image || post.text) {
+        const { data } = await axios.post(`/api/post/create/${info.id}`, post);
+        if (data.create) {
+          alertSuccess(data.message);
+          setPost({
+            text: "",
+            image: ""
+          });
+          setPreviewImage(null);
+        } else {
+          alertError(data.message);
         }
+      } else {
+        alertError("Faltan datos en la publicación");
+      }
     } catch (error) {
       console.error("Error en la función handlerPost", error);
     }
   }
 
+  // Referencia para el input de archivo
+  const selectImage = useRef(null);
 
-  const selectImage = useRef(null)
-  function hanlderClickInput () {
+  // Abre el diálogo de selección de archivo
+  function hanlderClickInput() {
     if (selectImage.current) {
-      selectImage.current.click()
+      selectImage.current.click();
     }
   }
 
