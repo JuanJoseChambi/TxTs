@@ -33,15 +33,8 @@ function Profile() {
   async function handlerUpDate() {
     if (upDate.nombre ||upDate.apellido ||upDate.nombreUsuario ||upDate.email ||upDate.contraseña ||upDate.bio ||upDate.image) {
       const { data } = await axios.put(`/api/user/${user.id}`, upDate);
-      if (data.update === false) {
-        alertError(data.message);
-        setUpDate({
-          nombreUsuario: "",
-          email: "",
-        });
-        return;
-      } else {
-        dispatch(setInfo(data));
+      if (data.update === true) {
+        dispatch(setInfo(data.userUpDate));
         alertSuccess(`Tu Información fue Actualizada`);
         setUpDate({
           nombre: "",
@@ -53,6 +46,13 @@ function Profile() {
           image: "",
         });
         handlerUserProfile();
+      } else {
+        alertError(data.message);
+        setUpDate({
+          nombreUsuario: "",
+          email: "",
+        });
+        return;  
       }
     }
   }
