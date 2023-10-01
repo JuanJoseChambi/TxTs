@@ -2,8 +2,9 @@ const { User, Publications } = require("../db")
 const bcrypt = require("bcryptjs");
 const { compararContraseña, generarToken } = require("../auth/auth");
 const {routeProtector} = require("../middlewares/routeProtector");
-const { upDateInfoUser } = require("../handlers/handlerUsers");
+const { upDateInfoUser, validateUser } = require("../handlers/handlerUsers");
 
+// Controlador para acceder a la cuenta de un usuario
 const accessUser = async (req, res) => {
     const {email, contraseña} = req.body;
     try {
@@ -27,17 +28,16 @@ const accessUser = async (req, res) => {
     }
 ;}
 
+// Controlador para crear un nuevo usuario
 const createUser = async (req, res) => {
     try {
         const {nombre, apellido, nombreUsuario, email, contraseña} = req.body;
         if (nombre && apellido && nombreUsuario && email && contraseña) {
             const emailMinus = email.toLowerCase();
-            const userExist = await User.findOne({where:{email: emailMinus}})
-            const userName = await User.findOne({where:{nombreUsuario: nombreUsuario}})
-            if (userExist) { return res.status(200).json({message:"Error: Email en uso"}) };
-            if (userName) { return res.status(200).json({message:"Error: Nombre de Usuario en uso"}) };
-            const contraseñaHashed = await bcrypt.hash(contraseña, 10);
-            const userCreate = {
+            const validate = await validateUser(emailMinus, nombreUsuario)
+            if (validate === true) {
+              const contraseñaHashed = await bcrypt.hash(contraseña, 10);
+              const userCreate = {
                 nombre:nombre,
                 apellido:apellido,
                 nombreUsuario:nombreUsuario,
@@ -45,7 +45,10 @@ const createUser = async (req, res) => {
                 contraseña: contraseñaHashed
             }
             await User.create(userCreate)
-            return res.status(200).json({create:true, message: "Usuario Registrado"})
+            res.status(200).json({create:true, message: "Usuario Registrado"})
+            }else{
+              res.status(404).json({message:validate})
+            }
         }else{
             res.status(404).json({message:"Datos a Completar Faltantes"})
         }
@@ -54,23 +57,24 @@ const createUser = async (req, res) => {
     }
 }
 
+// Controlador para actualizar información de usuario
 const update = async (req, res)  => {
   const { id } = req.params;
   const infoUser = req.body;
   try {
-
-    const nameUser = await User.findOne({where:{nombreUsuario:infoUser.nombreUsuario}})
-    const emailUser = await User.findOne({where:{email:infoUser.email}});
-    if (nameUser) return res.status(200).json({update:false, message:"Nombre De Usuario en Uso"});
-    if (emailUser) return res.status(200).json({update:false, message:"Email en Uso"});
-    
-    const UserUpDate = await upDateInfoUser(id, infoUser)
-    res.status(200).json(UserUpDate)
+    const validate = await validateUser(infoUser.email, infoUser.nombreUsuario)
+    if (validate === true) {
+      const UserUpDate = await upDateInfoUser(id, infoUser)
+      res.status(200).json({update:true, userUpDate: UserUpDate})
+    }else{
+      res.status(200).json({message:validate})
+    }
   } catch (error) {
     res.status(500).json({error:error.message})
   }
 }
 
+// Controlador para obtener información de un usuario o todos los usuarios
 const allUser =  async (req, res) => {
   const { id } = req.query;
   try {
@@ -108,7 +112,7 @@ const allUser =  async (req, res) => {
 
 
 module.exports = {
-  allUser:[routeProtector, allUser],
+  allUser:[routeProtector, allUser], // Protege la ruta con un middleware
   accessUser,
   createUser,
   update,
