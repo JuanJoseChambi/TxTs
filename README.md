@@ -16,6 +16,7 @@ Tecnologias Utilizadas:
   ![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
   ![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white)
   ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+  ![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)
 
 <h1>Proyecto de Red Social - Buenas Prácticas en Frontend y Backend</h1>
 Este proyecto es una aplicación de red social que ha sido desarrollada siguiendo y aprendiendo buenas prácticas enfocadas en los sectores de Frontend y Backend. La aplicación está completamente funcional y se ha diseñado para funcionar como una red social pequeña, que incluye características como el registro de usuarios y un sistema de inicio de sesión.
